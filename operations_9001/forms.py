@@ -39,7 +39,6 @@ class mentainance(ModelForm):
 
 class qmsplanner(ModelForm):
 
-    description = ModelChoiceField(queryset=Subject.objects, label='', empty_label="Choose subject..")
 
 
     
