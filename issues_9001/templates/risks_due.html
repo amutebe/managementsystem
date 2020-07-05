@@ -1,0 +1,32 @@
+{% extends "accounts/base.html" %} 
+{% block content %}
+
+<div class="col-md-8 order-md-1">
+          <h4 class="mb-3">Risks Due</h4>
+<p class="round2"> 
+
+
+		
+		<div class="card card-body">
+			
+			<table class="table table-sm ">
+			
+				{% for key,value in thisdict.items %}
+				<tr>
+				<td>{{ value }}</td>
+				<td><a class="btn btn-sm btn-info" href="{%url 'risks_7daysToExpiryview' value %}">View</a></td>
+				<td><a class="btn btn-sm btn-info" href="{%url 'verify_risk' value %}">Verification</a></td>
+            
+
+				</tr>
+				{% endfor %}
+		
+			</table>
+		</div>
+	</div>
+
+
+</div>
+
+
+{% endblock %} 
