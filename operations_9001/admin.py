@@ -16,5 +16,6 @@ admin.site.register(status)
 admin.site.register(prod_description)
 admin.site.register(qmsstatus)
 
+admin.site.register(noteffective)
 
 

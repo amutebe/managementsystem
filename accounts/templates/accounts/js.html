@@ -5,7 +5,72 @@
 
 
 <script>
+
+/*traning register training evaluation  dropdown*/
+$("#id_nature").change(function() {
+			if ($("#id_nature option:selected").text()=="Planned") {
+					
+				$('#divtrainingid').show();
+				
+				$('#id_trainingplanid').attr('required','');
+				$('#id_trainingplanid').attr('data-error', 'This field is required.');
+					
+				
+			} else {
+				
+				$('#divtrainingid').hide();
+				
+				
+				$('#id_trainingplanid').removeAttr('required');
+				$('#id_trainingplanid').removeAttr('data-error');				
+			}
+		});
+		$("#id_nature").trigger("change");
+
+
+$("#id_decision").change(function() {
+			if ($("#id_decision option:selected").text()=="Not Effective") {
+					
+				$('#divreason').show();
+				$('#id_reason').attr('required','');
+				$('#id_reason').attr('data-error', 'This field is required.');
+					
+				
+			} else {
+				
+				$('#divreason').hide();
+				
+				
+				$('#id_reason').removeAttr('required');
+				$('#id_reason').removeAttr('data-error');				
+			}
+		});
+		$("#id_decision").trigger("change");
+
+
+
+$("#id_reason").change(function() {
+			if ($("#id_reason option:selected").text()=="Other") {
+					
+				$('#divreasonother').show();
+				$('#id_reasonother').attr('required','');
+				$('#id_reasonother').attr('data-error', 'This field is required.');
+					
+				
+			} else {
+				
+				$('#divreasonother').hide();
+				
+				
+				$('#id_reasonother').removeAttr('required');
+				$('#id_reasonother').removeAttr('data-error');				
+			}
+		});
+		$("#id_reason").trigger("change");
+
 /*script for risk treamtment options dropdown*/
+
+
 $("#id_risktreatment").change(function() {
 			if ($(this).val()==4 || $(this).val()==2 ) {
 					

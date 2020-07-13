@@ -118,6 +118,13 @@ class qmsstatus(models.Model):
         return self.description
 
 
+class noteffective(models.Model):
+    description=models.CharField("Reason not effective", max_length=50,null=True,blank=True)
+    def __str__(self):
+        return self.description
+
+
+
 
 
 class mod9001_qmsplanner(models.Model):
@@ -145,6 +152,7 @@ class mod9001_qmsplanner(models.Model):
 
 class mod9001_trainingregister(models.Model):
     training_number=models.CharField("Training no.:",max_length=200,default="Comp-TR-"+car_no(),primary_key=True)
+    train_date=models.DateField("Training Date:",null=True)
     Nature=(('1','Planned'),('2','Not Planned'))
     nature=models.CharField(max_length=200,null=True, choices=Nature)
     training_desc=models.TextField("Training Description:",null=True,blank=True)
@@ -160,7 +168,16 @@ class mod9001_trainingregister(models.Model):
     skills=models.CharField("Training skills applied by trainee ",max_length=200,null=True, choices=yesno)
     indicators=models.CharField("Indicators exist that prove the employee benefited from the acquired skills in this Training course",max_length=200,null=True, choices=yesno)
     able=models.CharField("Employee Able to train others",max_length=200,null=True, choices=yesno)
-    decision=models.TextField("Evaluation Decision:",null=True,blank=True)
+    decision=(('1','Effective'),('2','Not Effective'))
+    decision=models.CharField("Evaluation Decision:",max_length=200,null=True, choices=decision)
+    reason=models.ForeignKey('noteffective', on_delete=models.CASCADE,verbose_name='If Not Effective, other reason:',related_name='noteffectreason',null=True)
+    reasonother=models.TextField("If Not Effective, reason",null=True,blank=True)
+    entered_by = models.ForeignKey(settings.AUTH_USER_MODEL,null=True, blank=True, related_name='training_entered_by',on_delete=models.SET_NULL)
+    date_today=models.DateField("Date created:",default=datetime.now)
+
+
+
+
 
 
 

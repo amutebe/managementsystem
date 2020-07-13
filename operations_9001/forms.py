@@ -38,11 +38,7 @@ class mentainance(ModelForm):
         widgets={'date_today':DateInput(),'date':DateInput()}
 
 class qmsplanner(ModelForm):
-
-
-
-    
-    
+  
     class Meta:
         model = mod9001_qmsplanner 
         fields = ['planner_number','plan_date','planner','start','end','description','details','status']
@@ -72,3 +68,12 @@ class VerifyQMS(ModelForm):
         #fields = '__all__'
         fields=['verification','verification_status','verification_failed','qmsstatus','scheduled','completion']
         widgets={'completion':DateInput(),'scheduled':DateInput()}   
+
+class trainingregister(ModelForm):
+  
+    class Meta:
+        model = mod9001_trainingregister 
+        fields = '__all__'
+        widgets={'train_date':DateInput(),'completion_date':DateInput()}
+
+   

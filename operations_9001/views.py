@@ -25,6 +25,10 @@ import csv
 def QMS_no():
    return str("Comp-QP-"+(date.today()).strftime("%d%m%Y"))+str(randint(0, 999))
 
+
+def Train_no():
+   return str("Comp-TR-Q-"+(date.today()).strftime("%d%m%Y"))+str(randint(0, 999))
+
 ####################################################################################
 def dateValidation(request):
     return render(request,'validation.html')
@@ -267,3 +271,31 @@ def verify_qms(request,pk_test):
 
 
     return render(request,'qms_verify.html',context)
+
+
+
+#######################TRAINING REGISTER###############################
+@login_required(login_url='login')
+def training_register(request):
+              
+    form=trainingregister(initial={'training_number': Train_no()})
+                          
+    if request.method=="POST":
+
+        request.POST=request.POST.copy()
+        request.POST['entered_by'] = request.user
+        request.POST['date_today']=date.today()
+        
+        form=trainingregister(request.POST)
+                        
+        if form.is_valid():
+
+                
+            form.save()
+            return redirect('/')
+            
+            
+          
+        
+    context={'form':form}
+    return render(request,'trainingregister.html',context)
