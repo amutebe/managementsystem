@@ -76,4 +76,36 @@ class trainingregister(ModelForm):
         fields = '__all__'
         widgets={'train_date':DateInput(),'completion_date':DateInput()}
 
+class trainingplaner(ModelForm):
+  
+    class Meta:
+        model = mod9001_trainingplanner
+        exclude=['trainplannerstatus','reason','rescheduled','completion','rejected','approval_date','approved_by','approval_date','verification','verification_status','verification_failed','trainplannerstatus','rescheduled','completion']
+        widgets={'trainng_date':DateInput(),'start':DateInput(),'end':DateInput(),'rescheduled':DateInput(),'completion':DateInput()}
+
+    def clean(self):
+        cleaned_data = super().clean()
+        start_date = cleaned_data.get("start")
+        end_date = cleaned_data.get("end")
+        if end_date < start_date:
+            raise forms.ValidationError("End date should be greater than start date.")
+
+class ApproveTrainingPlanner(ModelForm):
+   
+    
+    class Meta:
+        model = mod9001_trainingplanner 
+        #fields = '__all__'
+        fields=['status','rejected','approval_date','approved_by','approval_date']
+        widgets={'status': RadioSelect(),'approval_date':DateInput()}  
+
+
+class VerifyTraining(ModelForm):
+    
+    class Meta:
+        model = mod9001_trainingplanner 
+        #fields = '__all__'
+        fields=['verification','verification_status','verification_failed','trainplannerstatus','rescheduled','completion']
+        widgets={'completion':DateInput(),'rescheduled':DateInput()}   
+
    

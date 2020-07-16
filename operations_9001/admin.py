@@ -18,4 +18,8 @@ admin.site.register(qmsstatus)
 
 admin.site.register(noteffective)
 
+admin.site.register(train_status)
+admin.site.register(train_objective)
+admin.site.register(train_desc)
+
 

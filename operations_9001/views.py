@@ -29,6 +29,9 @@ def QMS_no():
 def Train_no():
    return str("Comp-TR-Q-"+(date.today()).strftime("%d%m%Y"))+str(randint(0, 999))
 
+def plan_no():
+   return str("Comp-TP-Q-"+(date.today()).strftime("%d%m%Y"))+str(randint(0, 999))
+
 ####################################################################################
 def dateValidation(request):
     return render(request,'validation.html')
@@ -299,3 +302,148 @@ def training_register(request):
         
     context={'form':form}
     return render(request,'trainingregister.html',context)
+
+
+#######################TRAINING PLANNER ###############################
+@login_required(login_url='login')
+def training_planner(request):
+              
+    form=trainingplaner(initial={'plan_number': plan_no()})
+                          
+    if request.method=="POST":
+
+        request.POST=request.POST.copy()
+        request.POST['entered_by'] = request.user
+        request.POST['date_today']=date.today()
+        request.POST['status'] = 5
+        
+        form=trainingplaner(request.POST)
+                        
+        if form.is_valid():
+
+                
+            form.save()
+            return redirect('/')
+            
+            
+          
+        
+    context={'form':form}
+    return render(request,'trainingplanner.html',context)
+
+@login_required(login_url='login')
+def trainplanner_pending(request):
+    pendingcar=mod9001_trainingplanner.objects.filter(status='5') #get all  pending approval    
+    context={'pendingcar':pendingcar} 
+    return render(request,'trainplanner_pending.html',context)
+
+
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['supervisor'])
+def approve_trainplanner(request,pk_test):
+    pending_risk=mod9001_trainingplanner.objects.get(plan_number=pk_test)
+    form=ApproveTrainingPlanner(instance=pending_risk)
+
+    if request.method=="POST":
+
+            
+            
+            request.POST=request.POST.copy()
+            request.POST['approved_by']=request.user
+            request.POST['approval_date']=date.today()                      
+
+            form=ApproveTrainingPlanner(request.POST, instance=pending_risk)
+            if form.is_valid():
+                form.save()
+                return redirect('/trainplanner_pending/')
+
+    context={'form':form}  
+
+
+    return render(request,'trainingplanner_approve.html',context)
+
+
+#####################################TRAIN PLANNER VERIFICATION##############################
+
+
+
+
+def CARnumbers_7days_expire(*x):
+    date_str = x[0]
+    date_object = datetime.strptime(date_str, '%m/%d/%Y').date()
+    delta =date_object - date.today()
+    return delta.days
+
+
+@login_required(login_url='login')
+def training_due(request):
+    carExpire7days=mod9001_trainingplanner.objects.filter(status=1).filter(~Q(trainplannerstatus=1))
+    thislist = []
+    for i in carExpire7days:
+        w=i.end
+        t=w.strftime('%m/%d/%Y')
+        if CARnumbers_7days_expire(t)<0:
+            thislist.append(i.plan_number)
+    thisdict={}
+    i=0
+    #creat a dictionary for all car numbers for display
+    for x in thislist:
+        while i<len(thislist):
+            y = str(i)
+            thisdict["plan_number"+y] = thislist[i]
+            i+=1
+
+        
+    return render(request,'training_due.html',{'thisdict':thisdict})
+
+
+
+@login_required(login_url='login')
+def qms_7daysToExpiryview(request,pk_test):
+
+    products=mod9001_qmsplanner.objects.filter(planner_number=pk_test)
+    return render(request,'qms_view_7_days_To_expiry.html',{'products':products})
+
+@allowed_users(allowed_roles=['supervisor'])
+def verify_training(request,pk_test):
+    open_car=mod9001_trainingplanner.objects.get(plan_number=pk_test)
+    form=VerifyTraining(instance=open_car)
+    if request.method=="POST":
+            #print("request.POST['qmsstatus']",request.POST['qmsstatus'])
+            
+            if request.POST['trainplannerstatus'] =="Rejected":
+                request.POST=request.POST.copy()
+                request.POST['status'] = 5 #requires approval first before next verification
+                request.POST['verification']=2 #default verifiaction to Not effective
+                #print("request", request.POST)
+            
+            elif request.POST['trainplannerstatus'] == '1':
+                #print("request.POST['qmsstatus']",request.POST['qmsstatus'])
+                request.POST=request.POST.copy()
+                request.POST['status'] = 1 # keep status approved
+            
+            else:
+                request.POST=request.POST.copy()
+
+
+
+
+
+
+            form=VerifyTraining(request.POST, instance=open_car)
+            if form.is_valid():
+                form.save()
+                return redirect('/training_due/')
+
+    context={'form':form}  
+
+
+    return render(request,'training_verify.html',context)
+
+
+@login_required(login_url='login')
+def training_7daysToExpiryview(request,pk_test):
+
+    products=mod9001_trainingplanner.objects.filter(plan_number=pk_test)
+    return render(request,'training_view_7_days_To_expiry.html',{'products':products})
+

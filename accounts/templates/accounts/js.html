@@ -5,8 +5,110 @@
 
 
 <script>
+/*traning planner   dropdown*/
 
-/*traning register training evaluation  dropdown*/
+$("#id_description").change(function() {
+			if ($("#id_description option:selected").text()=="Other") {
+					
+				$('#other').show();
+				
+				$('#id_other').attr('required','');
+				$('#id_other').attr('data-error', 'This field is required.');
+					
+				
+			} else {
+				
+				$('#other').hide();
+				
+				
+				$('#id_other').removeAttr('required');
+				$('#id_other').removeAttr('data-error');				
+			}
+		});
+		$("#id_description").trigger("change");
+
+$("#id_trainaudience").change(function() {
+			if ($("#id_trainaudience option:selected").text()=="Other") {
+					
+				$('#other_audience').show();
+				
+				$('#id_other_audience').attr('required','');
+				$('#id_other_audience').attr('data-error', 'This field is required.');
+					
+				
+			} else {
+				
+				$('#other_audience').hide();
+				
+				
+				$('#id_other_audience').removeAttr('required');
+				$('#id_other_audience').removeAttr('data-error');				
+			}
+		});
+		$("#id_trainaudience").trigger("change");
+
+$("#id_trainlocation").change(function() {
+			if ($("#id_trainlocation option:selected").text()=="Other") {
+					
+				$('#other_location').show();
+				
+				$('#id_other_location').attr('required','');
+				$('#id_other_location').attr('data-error', 'This field is required.');
+					
+				
+			} else {
+				
+				$('#other_location').hide();
+				
+				
+				$('#id_other_location').removeAttr('required');
+				$('#id_other_location').removeAttr('data-error');				
+			}
+		});
+		$("#id_trainlocation").trigger("change");
+
+
+$("#id_trainplannerstatus").change(function() {
+			if ($("#id_trainplannerstatus option:selected").text()=="Complete") {
+					
+				$('#completion').show();
+				$('#Reason').hide();
+				$('#rescheduled').hide();
+				
+				$('#id_completion').attr('required','');
+				$('#id_completion').attr('data-error', 'This field is required.');
+					
+				
+			} 
+
+			else if ($("#id_trainplannerstatus option:selected").text()=="Rescheduled")
+			{
+			
+				$('#Reason').show();
+				$('#completion').hide();
+				$('#rescheduled').show();
+				$('#id_rescheduled').attr('required','');
+				$('#id_rescheduled').attr('data-error', 'This field is required.');
+					
+
+			}
+			else
+			
+			{
+				
+				$('#completion').hide();
+				$('#Reason').show();
+				$('#rescheduled').hide();
+				$('#id_completion').removeAttr('required');
+				$('#id_completion').removeAttr('data-error');				
+			}
+		});
+		$("#id_trainplannerstatus").trigger("change");
+
+
+
+
+/*traning register  dropdown*/
 $("#id_nature").change(function() {
 			if ($("#id_nature option:selected").text()=="Planned") {
 					

@@ -214,27 +214,7 @@ form {
 
 {% endblock %} 
 
-<script>
-$("#id_reason").change(function() {
-			if ($("#id_reason option:selected").text()=="Other") {
-					
-				$('#divreasonother').show();
-				$('#id_reasonother').attr('required','');
-				$('#id_reasonother').attr('data-error', 'This field is required.');
-					
-				
-			} else {
-				
-				$('#divreasonother').hide();
-				
-				
-				$('#id_reasonother').removeAttr('required');
-				$('#id_reasonother').removeAttr('data-error');				
-			}
-		});
-		$("#id_reason").trigger("change");
 
-</script>
 
 
 

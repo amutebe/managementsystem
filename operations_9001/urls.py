@@ -15,6 +15,12 @@ path('verify_qms/<str:pk_test>/',views.verify_qms,name="verify_qms"),
 path('qms_due/',views.qms_due,name="qms_due"),
 path('qms_7daysToExpiryview/<str:pk_test>/',views.qms_7daysToExpiryview,name="qms_7daysToExpiryview"),
 path('training_register/', views.training_register, name='training_register'),
+path('training_planner/', views.training_planner, name='training_planner'),
 
+path('trainplanner_pending/', views.trainplanner_pending, name='trainplanner_pending'),
+path('approve_trainplanner/<str:pk_test>/',views.approve_trainplanner,name="approve_trainplanner"),
+path('training_due/',views.training_due,name="training_due"),
+path('verify_training/<str:pk_test>/',views.verify_training,name="verify_training"),
+path('training_7daysToExpiryview/<str:pk_test>/',views.training_7daysToExpiryview,name="training_7daysToExpiryview"),
     
 ]

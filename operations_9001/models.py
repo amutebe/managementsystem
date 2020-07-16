@@ -123,6 +123,21 @@ class noteffective(models.Model):
     def __str__(self):
         return self.description
 
+class train_desc(models.Model):
+    description=models.CharField("Training Description", max_length=50,null=True,blank=True)
+    def __str__(self):
+        return self.description
+
+class train_objective(models.Model):
+    description=models.CharField("Training Objective", max_length=50,null=True,blank=True)
+    def __str__(self):
+        return self.description
+
+
+class train_status(models.Model):
+    description=models.CharField("Training Status", max_length=50,null=True,blank=True)
+    def __str__(self):
+        return self.description
 
 
 
@@ -175,6 +190,65 @@ class mod9001_trainingregister(models.Model):
     entered_by = models.ForeignKey(settings.AUTH_USER_MODEL,null=True, blank=True, related_name='training_entered_by',on_delete=models.SET_NULL)
     date_today=models.DateField("Date created:",default=datetime.now)
 
+class mod9001_trainingplanner(models.Model):
+    plan_number=models.CharField("Plan no.:",max_length=200,default="Comp-TP-"+car_no(),primary_key=True)
+    trainng_date=models.DateField("Training Date:",null=True)
+    TYPE=(('1','Planned'),('2','Not Planned'))
+    type=models.CharField(max_length=200, choices=TYPE)
+    description = models.ForeignKey('train_desc',null=True, blank=True, related_name='train_desc',on_delete=models.SET_NULL)
+    other=models.TextField("Other training description:",null=True,blank=True)
+    TrainAudience=(('1','Employee'),('2','Other'))
+    trainaudience=models.CharField(max_length=200,null=True, choices=TrainAudience)
+    other_audience=models.TextField("Other Training Audience:",null=True,blank=True)
+    start=models.DateField("Start Date:")
+    end=models.DateField("End Date:")
+    LOCATION=(('1','Company Premise'),('2','Other'))
+    trainlocation=models.CharField(max_length=200,null=True, choices=LOCATION)
+    other_location=models.TextField("Other Location:",null=True,blank=True)
+    trainer=models.TextField("Trainer:",null=True,blank=True)
+    resources=models.TextField("Resource:",null=True,blank=True)
+    objective = models.ForeignKey('train_objective',null=True, blank=True, related_name='train_objective',on_delete=models.SET_NULL)
+    #train_status = models.ForeignKey('train_status',null=True, blank=True, related_name='train_status',on_delete=models.SET_NULL)
+    reason=models.TextField("Give Reason:",null=True,blank=True)
+    rescheduled=models.DateField("Rescheduled Date:",null=True,blank=True)
+    completion=models.DateField("Completion Date:",null=True,blank=True)
+     
+    status=models.ForeignKey('issues_9001.approval_status', on_delete=models.SET_NULL,verbose_name='Status:',null=True,blank=True)
+    rejected=models.TextField("Reason for rejecting:",null=True,blank=True, help_text='If rejected, please give a reason')
+    approval_date=models.DateField("Date Approved:",null=True,blank=True)
+    approved_by=models.ForeignKey(settings.AUTH_USER_MODEL,null=True, blank=True, related_name='trainplannerApprov_by',on_delete=models.SET_NULL)
+    verification=models.ForeignKey('issues_9001.RISK_OPPverification', on_delete=models.SET_NULL,verbose_name='Verification:',null=True,blank=True)
+    verification_status=models.CharField(max_length=200, null=True,blank=True)
+    verification_failed=models.TextField("Reason for rejecting:",null=True,blank=True, help_text='If rejected, please give a reason')
+    due=models.DateField("When:",null=True,blank=True)
+    trainplannerstatus=models.ForeignKey(qmsstatus, on_delete=models.SET_NULL,null=True,verbose_name='Verification Status:')
+
+    entered_by = models.ForeignKey(settings.AUTH_USER_MODEL,null=True, blank=True, related_name='planner_entered_by',on_delete=models.SET_NULL)
+    date_today=models.DateField("Date created:",default=datetime.now)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
+
+
+
+   
 
 
 

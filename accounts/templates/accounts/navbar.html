@@ -54,14 +54,27 @@
                           </ul>
                           </li>
                         
-                        <li><a data-icon="&#xf1d9" href="{% url 'training_register'%}">Training Planner</a></li>
-                      
+                        <li><a data-icon="&#xf1d9">Training Register</a>
+                        <ul>
+                        <li><a data-icon="&#xf015" href="{% url 'training_register'%}">Create</a></li>
+                        </ul>
+                        </li>
                         
                         <li><a data-icon="&#xf013">QMS Planner</a>
                         <ul>
                               <li><a data-icon="&#xf015"  href="{% url 'qms_planner'%}">Create</a></li>
                                 <li><a data-icon="&#xf015" href="{% url 'qms_pending'%}">Approve</a></li>
                               <li><a data-icon="&#xf12e" href="{% url 'qms_due'%}">Verification</a>
+
+                          </ul>
+                        
+                        </li>
+
+                         <li><a data-icon="&#xf013">Training Planner</a>
+                        <ul>
+                              <li><a data-icon="&#xf015"  href="{% url 'training_planner'%}">Create</a></li>
+                                <li><a data-icon="&#xf015" href="{% url 'trainplanner_pending'%}">Approve</a></li>
+                              <li><a data-icon="&#xf12e" href="{% url 'training_due'%}">Verification</a>
 
                           </ul>
                         
