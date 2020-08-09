@@ -1,15 +1,15 @@
 from django.db import models
 from django.contrib.auth.models import User
 from datetime import datetime, date
-from random import randint
+from random import randint,randrange
 from django import forms
 from django.conf import settings
+from multiselectfield import MultiSelectField
 
 # Create your models here.
 def car_no():
     now = datetime.now()
-    t=(now.strftime('%H'))+(now.strftime('%M'))+(now.strftime('%S'))
-    return str((date.today()).strftime("%d%m%Y"))+str(randint(0, 999))
+    return str((date.today()).strftime("%d%m%Y"))+str(randrange(100, 299))
 
 class document_standard(models.Model):
 
@@ -43,6 +43,19 @@ class equipment(models.Model):
 class schedule(models.Model):
 
     description=models.CharField("Maintenence schedule", max_length=50,null=True,blank=True)
+    def __str__(self):
+        return self.description
+
+class classification(models.Model):
+
+    description=models.CharField("Incident Classification", max_length=50,null=True,blank=True)
+    def __str__(self):
+        return self.description
+
+
+class rootcause(models.Model):
+
+    description=models.CharField("Root Cause", max_length=50,null=True,blank=True)
     def __str__(self):
         return self.description
 
@@ -140,6 +153,31 @@ class train_status(models.Model):
         return self.description
 
 
+class incident_type(models.Model):
+    
+    description=models.CharField("Type of feedback", max_length=200,null=True,blank=True)
+    def __str__(self):
+        return self.description
+
+class costs(models.Model):
+    
+    description=models.CharField("Incident cost", max_length=200,null=True,blank=True)
+    def __str__(self):
+        return self.description
+
+
+
+
+class incident_description(models.Model):
+    description=models.CharField("Incident Description", max_length=200,null=True,blank=True)
+    incident_type= models.ForeignKey('incident_type',on_delete=models.CASCADE,verbose_name='Incident Type:',related_name='incidentype')
+    def __str__(self):
+        return self.description
+
+class process(models.Model):
+    description=models.CharField("Process", max_length=200,null=True,blank=True)
+    def __str__(self):
+        return self.description
 
 
 class mod9001_qmsplanner(models.Model):
@@ -228,9 +266,68 @@ class mod9001_trainingplanner(models.Model):
 
 
 
+class mod9001_customeregistration(models.Model):
+    name="Customer Registration"
+    plan_number=models.CharField("Plan no.:",max_length=200,primary_key=True)
+    date_posted=models.DateField("Date Posted:",null=True)
+    name=models.TextField("Customer Name:",null=True,blank=True)
+    manager=models.TextField("Account Manager:",null=True,blank=True)
+    contact=models.TextField("Customer Contact Person:",null=True,blank=True)
+    phone=models.TextField("Customer Business Phone No:",null=True,blank=True)
+    email=models.EmailField("Customer Business Email: ",null=True,blank=True)
+    address=models.TextField("Customer Business Address: ",null=True,blank=True)
+    entered_by = models.ForeignKey(settings.AUTH_USER_MODEL,null=True, blank=True, related_name='customer_entered_by',on_delete=models.SET_NULL)
+    date_today=models.DateField("Date created:",default=datetime.now)
 
 
 
+class mod9001_incidentregister(models.Model):
+    incident_number=models.CharField("Incident No.:",max_length=200,primary_key=True)
+    date=models.DateField("Date:",null=True)
+    time=models.TimeField("Time (24Hr):",null=True)
+    REFERENCE=(('1','Project'),('2','Process'),('3','Other'))
+    reference=models.CharField("Reference",max_length=200, choices=REFERENCE)
+    processname=models.ForeignKey('process', on_delete=models.SET_NULL,verbose_name='If Process, name:',null=True,blank=True)
+    incidentype=models.ForeignKey('incident_type', on_delete=models.SET_NULL,verbose_name='incidentype:',null=True,blank=True)
+    incident_description=models.ForeignKey('incident_description', on_delete=models.SET_NULL,verbose_name='incidentdescription:',null=True,blank=True)
+    other=models.TextField("Details",null=True, blank=True)
+    entered_by = models.ForeignKey(settings.AUTH_USER_MODEL,null=True, blank=True, related_name='register_entered_byy',on_delete=models.SET_NULL)
+    date_today=models.DateField("Date created:",default=datetime.now)
+    def __str__(self):
+        return self.incident_number
+
+
+class mod9001_incidentregisterStaff(models.Model):
+    incident_number=models.ForeignKey('mod9001_incidentregister', on_delete=models.SET_NULL,verbose_name='Incident Number:',null=True,blank=True)
+    classification=models.ForeignKey('classification', on_delete=models.SET_NULL,verbose_name='Incident Classification:',null=True,blank=True)
+    rootcause=models.ForeignKey('rootcause', on_delete=models.SET_NULL,verbose_name='Root Cause:',null=True,blank=True)
+    otherootcause=models.TextField("Other Root Cause:",null=True, blank=True)
+    correction=(('1','Redo/Rework'),('2','Replace'),('3','Refund'),('4','Repair'),('5','Suspend'),('6','Customer Concession obtained'),('7','Escalated'),('8','Other'))    
+    correction=models.CharField(verbose_name='Short Term Correction/Containment:',max_length=50, null=True,blank=True,choices=correction)
+    escalated = models.ForeignKey(settings.AUTH_USER_MODEL,null=True, blank=True,verbose_name='Responsible:', related_name='escalated',on_delete=models.SET_NULL)
+    description=models.TextField("Additional Description:",null=True, blank=True)
+    assigned = models.ForeignKey(settings.AUTH_USER_MODEL,null=True, blank=True, verbose_name='Assigned:',related_name='asigned',on_delete=models.SET_NULL)
+    date=models.DateField("Date:",default=datetime.now)
+    completion=models.DateField("Completion Date:")
+    costs=(('1','Financial'),('2','Operational'),('3','Legal/Regulatory'),('4','Brand/Reputation'))
+    #MY_CHOICES = (('item_key1', 'Item title 1.1'),('item_key2', 'Item title 1.2'),('item_key3', 'Item title 1.3'),('item_key4', 'Item title 1.4'),('item_key5', 'Item title 1.5'))
+    cost = MultiSelectField('Incident Cost',choices=costs)
+    
+    costdescription=models.TextField("Incident Cost Description:",null=True, blank=True)
+    lesson=models.TextField("Lesson learnt:",null=True, blank=True)
+    status=models.TextField("Complaint Status:",null=True, blank=True)
+    entered_by = models.ForeignKey(settings.AUTH_USER_MODEL,null=True, blank=True, related_name='incidentstaff',on_delete=models.SET_NULL)
+    date_today=models.DateField("Date created:",default=datetime.now)
+
+
+class mod9001_processtable(models.Model):
+    process_number=models.CharField("Process ID:",max_length=200,default="Comp-Pr-"+car_no(),primary_key=True)
+    date=models.DateTimeField("Date Registered:",null=True)
+    category=(('1','Key Process'),('2','Support Process'),('3','Outsourced Process'),('4','Other'))
+    processcategory=models.CharField("Process Category",max_length=200, choices=category)
+    process=models.ForeignKey('process', on_delete=models.SET_NULL,verbose_name='procestable:',null=True,blank=True)
+    purpose=models.TextField("Purpose",null=True, blank=True)
+    owner= models.ForeignKey('accounts.employees',on_delete=models.CASCADE,verbose_name='Owner:',related_name='own')
 
 
 

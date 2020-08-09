@@ -10,7 +10,7 @@ from .decorators import unauthenticated_user,allowed_users
 from django.contrib.auth.decorators import login_required
 from datetime import date
 import json
-from django.db.models import Count, Q
+from django.db.models import Count, Q, F
 import xlwt
 from django.contrib.auth.models import User
 from xlutils.copy import copy # http://pypi.python.org/pypi/xlutils
@@ -31,6 +31,15 @@ def Train_no():
 
 def plan_no():
    return str("Comp-TP-Q-"+(date.today()).strftime("%d%m%Y"))+str(randint(0, 999))
+
+def incident_no():
+   return str("Comp-INC-IS-"+(date.today()).strftime("%d%m%Y"))+str(randint(0, 999))
+
+
+def customer_no():
+   return str("CST-MM-"+(date.today()).strftime("%d%m%Y"))+str(randint(0, 999))
+
+
 
 ####################################################################################
 def dateValidation(request):
@@ -446,4 +455,125 @@ def training_7daysToExpiryview(request,pk_test):
 
     products=mod9001_trainingplanner.objects.filter(plan_number=pk_test)
     return render(request,'training_view_7_days_To_expiry.html',{'products':products})
+
+
+@login_required(login_url='login')
+def incidentRegister(request):
+              
+    form=incident_Register(initial={'incident_number': incident_no()})
+                          
+    if request.method=="POST":
+
+        request.POST=request.POST.copy()
+        request.POST['entered_by'] = request.user
+        request.POST['date_today']=date.today()
+        #request.POST['status'] = 5
+        
+        form=incident_Register(request.POST)
+                        
+        if form.is_valid():
+
+                
+            form.save()
+            return redirect('/')
+            
+            
+          
+        
+    context={'form':form}
+    return render(request,'incidentRegister.html',context)
+
+
+def load_description(request):
+    context_id = request.GET.get('contextid')
+    
+    #ids = mod9001_risks.objects.filter(contextdetails_id=context_id)
+    #ids = mod9001_issues.objects.all()
+   
+    print("context_id incidents", context_id)
+    ids=incident_description.objects.filter(incident_type_id=context_id)
+    for id in ids:
+        print("ID  Description",id.incident_type_id,  id.description)
+
+    
+    return render(request, 'id_dropdown_list_option.html', {'ids': ids})
+
+
+def load_process(request):
+    context_id = request.GET.get('contextid')
+    
+    #ids = mod9001_risks.objects.filter(contextdetails_id=context_id)
+    #ids = mod9001_issues.objects.all()
+   
+    print("context_id incidents", context_id)
+    if context_id=="2":
+        #print("ID  test",id.id,  id.description)
+        ids=process.objects.all()
+    else:
+        ids=process.objects.filter(id=20)
+    
+    for id in ids:
+        print("ID  Description",id.id,  id.description)
+
+    
+    return render(request, 'load_process_list.html', {'ids': ids})
+
+
+@login_required(login_url='login')
+def customerRegister(request):
+              
+    form=customer_Register(initial={'customer_number': customer_no()})
+                          
+    if request.method=="POST":
+
+        request.POST=request.POST.copy()
+        request.POST['entered_by'] = request.user
+        request.POST['date_today']=date.today()
+        #request.POST['status'] = 5
+        
+        form=customer_Register(request.POST)
+                        
+        if form.is_valid():
+
+                
+            form.save()
+            return redirect('/')
+            
+    context={'form':form}
+    return render(request,'customeRegister.html',context)
+
+@login_required(login_url='login')
+def incidentRegisterStaff(request):
+    form=incident_RegisterStaff()
+              
+                            
+    if request.method=="POST":
+        request.POST=request.POST.copy()
+        request.POST['entered_by'] = request.user
+        request.POST['date_today']=date.today()
+        #request.POST['status'] = 5
+        
+        form=incident_RegisterStaff(request.POST)
+                        
+        if form.is_valid():
+
+                
+            form.save()
+            return redirect('/')
+            
+            
+          
+        
+    context={'form':form}
+    return render(request,'incidentRegisterStaff.html',context)
+
+
+
+
+            
+            
+          
+        
+
+
 

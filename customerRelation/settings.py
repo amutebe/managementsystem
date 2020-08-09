@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django_filters',
     'issues_9001',
     'operations_9001',
+    'multiselectfield',
 ]
 
 MIDDLEWARE = [

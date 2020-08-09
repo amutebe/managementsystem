@@ -1,10 +1,85 @@
-
-
-
-
-
-
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script>
+//INCIDENT PLANNER DROPDOWNS
+
+$("#id_rootcause").change(function() {
+			if ($("#id_rootcause option:selected").text()=="Other") {
+					
+				$('#id_otherootcause').show();
+				
+				$('#id_otherootcause').attr('required','');
+				$('#id_otherootcause').attr('data-error', 'This field is required.');
+				$('label[for="id_otherootcause"]').show();
+					
+				
+			} else {
+				
+				$('#id_otherootcause').hide();
+				
+				$('label[for="id_otherootcause"]').hide();
+				$('#id_otherootcause').removeAttr('required');
+				$('#id_otherootcause').removeAttr('data-error');				
+			}
+		});
+		$("#id_rootcause").trigger("change");
+
+
+ $("#id_reference").change(function () {
+      var url = $("#incidentForm").attr("prcoess-ids-url");
+      var contextId = $(this).val();
+      // alert("Alert! propoasal date must be later than implementation date");
+	if (contextId=="2")
+	{
+
+
+	$('#id_processname').removeAttr("readonly");
+	}
+	else
+	{
+	
+
+	}
+
+      $.ajax({
+        url: url,
+        data: {
+          'contextid': contextId
+        },
+        success: function (data) {
+        //alert("Alert! propoasal date must be later than implementation date");
+          $("#id_processname").html(data);
+	
+		
+        }
+      });
+
+    });
+    $("#id_reference").trigger("change");
+
+
+
+ $("#id_incidentype").change(function () {
+      var url = $("#incidentForm").attr("data-ids-url");
+      var contextId = $(this).val();
+      // alert("Alert! propoasal date must be later than implementation date");
+   
+
+      $.ajax({
+        url: url,
+        data: {
+          'contextid': contextId
+        },
+        success: function (data) {
+        //alert("Alert! propoasal date must be later than implementation date");
+          $("#id_incident_description").html(data);
+	
+		
+        }
+      });
+
+    });
+    $("#id_incidentype").trigger("change");
+
 /*traning planner   dropdown*/
 
 $("#id_description").change(function() {
@@ -104,7 +179,28 @@ $("#id_trainplannerstatus").change(function() {
 			}
 		});
 		$("#id_trainplannerstatus").trigger("change");
-
+//incident register staff form short term correction/containment dropdown
+$("#id_correction").change(function() {
+			if ($("#id_correction option:selected").text()=="Escalated") {
+					
+				$('#id_escalated').show();
+				$('label[for="id_escalated"]').show();
+				
+				$('#id_escalated').attr('required','');
+				$('#id_escalated').attr('data-error', 'This field is required.');
+					
+				
+			} else {
+				
+				$('#id_escalated').hide();
+				$('label[for="id_escalated"]').hide();
+				
+				
+				$('#id_escalated').removeAttr('required');
+				$('#id_escalated').removeAttr('data-error');				
+			}
+		});
+		$("#id_correction").trigger("change");
 
 
 

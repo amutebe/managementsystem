@@ -1,8 +1,10 @@
 from django.forms import ModelForm,TextInput,NumberInput,RadioSelect
+
 from .models import *
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django import forms
+from multiselectfield import MultiSelectFormField
 
 
 class DateInput(forms.DateInput):
@@ -107,5 +109,32 @@ class VerifyTraining(ModelForm):
         #fields = '__all__'
         fields=['verification','verification_status','verification_failed','trainplannerstatus','rescheduled','completion']
         widgets={'completion':DateInput(),'rescheduled':DateInput()}   
+
+
+class incident_Register(ModelForm):
+  
+    class Meta:
+        model = mod9001_incidentregister 
+        exclude = ['entered_by','date_today']
+        widgets={'date':DateInput(),'time':TimeInput()}
+
+class customer_Register(ModelForm):
+  
+    class Meta:
+        model = mod9001_customeregistration 
+        exclude = ['entered_by','date_today']
+        widgets={'date_posted':DateInput()}
+
+class incident_RegisterStaff(ModelForm):
+     #cost = MultiSelectFormField(choices=mod9001_incidentregisterStaff.costs)
+      
+     class Meta:
+        model = mod9001_incidentregisterStaff 
+        exclude = ['entered_by','date_today']
+        widgets={'date':DateInput(),'completion':DateInput(),'date_posted':DateInput(), 'costdescription':forms.Textarea(attrs={'rows': 2, 'cols': 40}), 'status':forms.Textarea(attrs={'rows': 2, 'cols': 40}), 'lesson':forms.Textarea(attrs={'rows': 2, 'cols': 40}), 'description':forms.Textarea(attrs={'rows': 2, 'cols': 40})}
+
+
+
+
 
    

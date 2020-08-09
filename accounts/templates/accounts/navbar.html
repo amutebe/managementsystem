@@ -5,7 +5,7 @@
     <ul>
         <!--<img src="{% static 'images/AndyMSLogo.png'%}">-->
         <li><a data-icon="&#xf015" href="{% url 'home'%}">Home</a></li>
-        <li><a data-icon="&#xf13C;" href="http://">QMS</a>
+        <li><a data-icon="&#xf13C;" >QMS</a>
             <ul>
                
                 <li><a data-icon="&#xf0e4" href="{% url 'home'%}">DashBoard</a></li>
@@ -57,6 +57,7 @@
                         <li><a data-icon="&#xf1d9">Training Register</a>
                         <ul>
                         <li><a data-icon="&#xf015" href="{% url 'training_register'%}">Create</a></li>
+                        
                         </ul>
                         </li>
                         
@@ -90,7 +91,18 @@
                         
                         <!--<li><a data-icon="&#xf0e6" href="{% url 'maintenance'%}">Maintenance Record</a></li>-->
                         
-                        <li><a data-icon="&#xf016" href="#">Incident register</a></li>
+                        <li>
+                                <a data-icon="&#xf016">Incident register</a>
+                        <ul>
+                                <li><a data-icon="&#xf015" href="{% url 'incidentRegister'%}">Customer</a>
+                        <ul>
+                      
+                        </ul>
+                        <a data-icon="&#xf015" href="{% url 'incidentRegisterStaff'%}">Staff</a>
+
+                          </li>    
+                        </ul>
+                        </li>
                         <li><a data-icon="&#xf008" href="#">Training register</a></li>
                      
                         <li><a data-icon="&#xf06c" href="#">Leave Application</a></li>

@@ -22,4 +22,17 @@ admin.site.register(train_status)
 admin.site.register(train_objective)
 admin.site.register(train_desc)
 
+admin.site.register(incident_description)
+admin.site.register(incident_type)
+admin.site.register(mod9001_incidentregister)
+admin.site.register(mod9001_processtable)
+admin.site.register(process) 
+admin.site.register(mod9001_customeregistration)
+admin.site.register(classification)
+admin.site.register(rootcause)
+admin.site.register(costs)
+
+
+
+
 

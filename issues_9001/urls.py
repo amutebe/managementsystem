@@ -8,12 +8,13 @@ from django.urls import path, include
 urlpatterns = [
 
 ######post back urls###########
-    
+  
     
     
     
     path('ajax/load-ids/', views.load_ids, name='ajax_load_ids'),
     path('ajax/load-contextdesc/', views.load_contextdesc, name='ajax_load_contextdesc'),
+
 ###########end#############
 
 

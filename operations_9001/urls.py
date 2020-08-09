@@ -17,10 +17,20 @@ path('qms_7daysToExpiryview/<str:pk_test>/',views.qms_7daysToExpiryview,name="qm
 path('training_register/', views.training_register, name='training_register'),
 path('training_planner/', views.training_planner, name='training_planner'),
 
+
 path('trainplanner_pending/', views.trainplanner_pending, name='trainplanner_pending'),
 path('approve_trainplanner/<str:pk_test>/',views.approve_trainplanner,name="approve_trainplanner"),
 path('training_due/',views.training_due,name="training_due"),
 path('verify_training/<str:pk_test>/',views.verify_training,name="verify_training"),
 path('training_7daysToExpiryview/<str:pk_test>/',views.training_7daysToExpiryview,name="training_7daysToExpiryview"),
-    
+
+path('incidentRegister/', views.incidentRegister, name='incidentRegister'),
+path('ajax/load_description/', views.load_description, name='ajax_load_description'),
+path('ajax/load_process/', views.load_process, name='ajax_load_process'),
+
+
+path('customerRegister/', views.customerRegister, name='customerRegister'),
+path('incidentRegisterStaff/', views.incidentRegisterStaff, name='incidentRegisterStaff'),
+
+
 ]
