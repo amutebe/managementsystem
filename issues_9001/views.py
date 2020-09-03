@@ -39,6 +39,11 @@ def Regulatory_no():
 def Risk_no():
     return str("TEGA-RA-"+(date.today()).strftime("%d%m%Y"))+str(randint(0, 999))
 
+def opportunity_no():
+    return str("TEGA-OPP-"+(date.today()).strftime("%d%m%Y"))+str(randint(0, 999))
+
+
+
 
 
 
@@ -471,7 +476,7 @@ def risks(request):
 
 @login_required(login_url='login')
 def opportunity(request):
-    form=risk(initial={'risk_number': Risk_no()})
+    form=risk(initial={'risk_number': opportunity_no()})
     
     
     if request.method=="POST":

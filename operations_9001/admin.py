@@ -31,6 +31,7 @@ admin.site.register(mod9001_customeregistration)
 admin.site.register(classification)
 admin.site.register(rootcause)
 admin.site.register(costs)
+admin.site.register(providerparameters)
 
 
 

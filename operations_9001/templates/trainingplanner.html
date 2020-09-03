@@ -67,7 +67,7 @@ form {
    
 
 <div class="form-group" id="other">
-    <label for="other">Other:</label>
+    <label for="other">If other, specify:</label>
 	<br>
 <input type="text" class="form-control" id="other"  name="other"{{form.other}}
   <font color="red">{{form.errors.other}}</font>
@@ -75,6 +75,17 @@ form {
 </div>
 
 </div>
+
+<div class="form-group" id="addtionalDescription">
+    
+    <label for="internal">Additional Description:</label>
+<br>
+
+<input type="text" class="form-control" id="details"  name="details"{{form.details}}
+  <font color="red">{{form.errors.details}}</font>
+</div>
+
+
 
     <div class="form-group">
    

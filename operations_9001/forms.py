@@ -7,6 +7,9 @@ from django import forms
 from multiselectfield import MultiSelectFormField
 
 
+
+class HorizontalRadioSelect(forms.RadioSelect):
+    template_name = 'horizontal_select.html'
 class DateInput(forms.DateInput):
     input_type = 'date'
 
@@ -131,7 +134,29 @@ class incident_RegisterStaff(ModelForm):
      class Meta:
         model = mod9001_incidentregisterStaff 
         exclude = ['entered_by','date_today']
+        
         widgets={'date':DateInput(),'completion':DateInput(),'date_posted':DateInput(), 'costdescription':forms.Textarea(attrs={'rows': 2, 'cols': 40}), 'status':forms.Textarea(attrs={'rows': 2, 'cols': 40}), 'lesson':forms.Textarea(attrs={'rows': 2, 'cols': 40}), 'description':forms.Textarea(attrs={'rows': 2, 'cols': 40})}
+
+class providerassessments(ModelForm):
+     #cost = MultiSelectFormField(choices=mod9001_incidentregisterStaff.costs)
+      
+     class Meta:
+        model = mod9001_providerassessment 
+        exclude = ['entered_by','date_today']
+        
+
+        #fields = ['emp_perfrev_no','planner_number','date','Provider','organisation','assesment_date','start','end','appraise']
+       
+        
+        widgets={'comment':TextInput(),'purpose':TextInput(),'date':DateInput(),'assesment_date':DateInput(),'start':DateInput(), 'end':DateInput(),'jobknowledge':HorizontalRadioSelect(),'adaptability':HorizontalRadioSelect(),'problemsolve':HorizontalRadioSelect(),'initiativeness':HorizontalRadioSelect(),'planning':HorizontalRadioSelect(),'work':HorizontalRadioSelect(),'Communication':HorizontalRadioSelect(),'skills':HorizontalRadioSelect(),'supervision':HorizontalRadioSelect(),'availability':HorizontalRadioSelect(),'professionalism':HorizontalRadioSelect()}
+        def clean(self):
+            cleaned_data = super().clean()
+            start_date = cleaned_data.get("start")
+            end_date = cleaned_data.get("end")
+            if end_date < start_date:
+                raise forms.ValidationError("End date should be greater than start date.")
+
+
 
 
 

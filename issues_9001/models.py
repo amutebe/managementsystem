@@ -249,6 +249,7 @@ class mod9001_risks(models.Model):
     approved_by=models.ForeignKey(settings.AUTH_USER_MODEL,null=True, blank=True, related_name='risk_OPPApprov_by',on_delete=models.SET_NULL)
     record_type=models.TextField("Record Type:",null=True,blank=True, help_text='Specifies whether the record is risk or opprotunity entry')
     verification=models.ForeignKey(RISK_OPPverification, on_delete=models.SET_NULL,verbose_name='Verification:',null=True,blank=True)
+    
     #verification_status=(('Closed','Close'),('Rejected','Reject'))
    
     

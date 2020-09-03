@@ -94,7 +94,7 @@ def cali(request):
                 
             form.save()
             return redirect('/')
-            
+        
             
           
         
@@ -475,7 +475,9 @@ def incidentRegister(request):
 
                 
             form.save()
-            return redirect('/')
+            form=incident_Register(initial={'incident_number': incident_no()})
+            context={'form':form}
+            return render(request,'incidentRegister.html',context)
             
             
           
@@ -537,7 +539,10 @@ def customerRegister(request):
 
                 
             form.save()
-            return redirect('/')
+            form=customer_Register(initial={'customer_number': customer_no()})
+            context={'form':form}
+            return render(request,'customeRegister.html',context)
+            
             
     context={'form':form}
     return render(request,'customeRegister.html',context)
@@ -559,7 +564,10 @@ def incidentRegisterStaff(request):
 
                 
             form.save()
-            return redirect('/')
+            form=incident_RegisterStaff()
+            context={'form':form}
+            return render(request,'incidentRegisterStaff.html',context)
+
             
             
           
@@ -567,6 +575,36 @@ def incidentRegisterStaff(request):
     context={'form':form}
     return render(request,'incidentRegisterStaff.html',context)
 
+
+
+@login_required(login_url='login')
+def providerassessment(request):
+    form=providerassessments()
+    
+              
+                            
+    if request.method=="POST":
+        request.POST=request.POST.copy()
+        request.POST['entered_by'] = request.user
+        request.POST['date_today']=date.today()
+        #request.POST['status'] = 5
+        
+        form=providerassessments(request.POST)
+                        
+        if form.is_valid():
+
+                
+            form.save()
+            form=providerassessments()
+            context={'form':form}
+            return render(request,'providerassessment.html',context)
+
+            
+            
+          
+        
+    context={'form':form}
+    return render(request,'providerassessment.html',context)
 
 
 

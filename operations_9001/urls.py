@@ -31,6 +31,7 @@ path('ajax/load_process/', views.load_process, name='ajax_load_process'),
 
 path('customerRegister/', views.customerRegister, name='customerRegister'),
 path('incidentRegisterStaff/', views.incidentRegisterStaff, name='incidentRegisterStaff'),
+path('providerassessment/', views.providerassessment, name='providerassessment'),
 
 
 ]

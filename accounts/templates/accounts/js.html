@@ -1,5 +1,789 @@
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script>
+function myFunction() {
+  var x = document.getElementById("myRadio").value;
+  document.getElementById("demo").innerHTML = x;
+}
+</script>
+<script>
+//ASSESMENT PROVIDER SCORE
+$(document).ready(function(){
+    $('#id_jobknowledge').change(function()
+	{
+if(document.querySelector('input[name="jobknowledge"]:checked').value==""||
+document.querySelector('input[name="adaptability"]:checked').value==""||
+document.querySelector('input[name="problemsolve"]:checked').value==""||
+document.querySelector('input[name="initiativeness"]:checked').value==""||
+document.querySelector('input[name="planning"]:checked').value==""||
+document.querySelector('input[name="work"]:checked').value==""||
+document.querySelector('input[name="skills"]:checked').value==""||
+document.querySelector('input[name="Communication"]:checked').value==""||
+document.querySelector('input[name="supervision"]:checked').value==""||
+document.querySelector('input[name="availability"]:checked').value==""||
+document.querySelector('input[name="professionalism"]:checked').value=="")
+	{
+//alert("All fields require to be filled");
+$('#id_rank').css("background-color", "");
+$('#id_rank').val("");
+	}
+else
+{
+	
+		
+percent_score=parseInt(document.querySelector('input[name="jobknowledge"]:checked').value)+
+parseInt(document.querySelector('input[name="adaptability"]:checked').value)+
+parseInt(document.querySelector('input[name="problemsolve"]:checked').value)+
+parseInt(document.querySelector('input[name="initiativeness"]:checked').value)+
+parseInt(document.querySelector('input[name="planning"]:checked').value)+
+parseInt(document.querySelector('input[name="work"]:checked').value)+
+parseInt(document.querySelector('input[name="skills"]:checked').value)+
+parseInt(document.querySelector('input[name="Communication"]:checked').value)+
+parseInt(document.querySelector('input[name="supervision"]:checked').value)+
+parseInt(document.querySelector('input[name="availability"]:checked').value)+
+parseInt(document.querySelector('input[name="professionalism"]:checked').value);
+	
+
+
+		
+		if (percent_score <50 )
+		{
+			var form = document.getElementById("id_jobknowledge");
+			//alert(document.getElementById($("id_jobknowledge").val()));
+			//alert(document.querySelector('input[name="jobknowledge"]:checked').value);
+			
+			
+		
+			$('#id_rank').css("background-color", "#FF0000");
+			$('#id_rank').val(Math.round(percent_score)+"%: Poor");
+
+			
+			
+		}
+		else if (percent_score >=50 && percent_score<90 )
+		{
+			$('#id_rank').css("background-color", "#FFC300");
+			$('#id_rank').val(Math.round(percent_score)+"%: Average");
+			
+			
+		}
+		else
+		{
+			$('#id_rank').css("background-color", "#00FF82");
+			$('#id_rank').val(Math.round(percent_score)+"%: Good");
+			
+			
+		}
+		
+}
+		
+    }); 
+
+$('#id_adaptability').change(function()
+	{
+if(document.querySelector('input[name="jobknowledge"]:checked').value==""||
+document.querySelector('input[name="adaptability"]:checked').value==""||
+document.querySelector('input[name="problemsolve"]:checked').value==""||
+document.querySelector('input[name="initiativeness"]:checked').value==""||
+document.querySelector('input[name="planning"]:checked').value==""||
+document.querySelector('input[name="work"]:checked').value==""||
+document.querySelector('input[name="skills"]:checked').value==""||
+document.querySelector('input[name="Communication"]:checked').value==""||
+document.querySelector('input[name="supervision"]:checked').value==""||
+document.querySelector('input[name="availability"]:checked').value==""||
+document.querySelector('input[name="professionalism"]:checked').value=="")
+	{
+$('#id_rank').css("background-color", "");
+$('#id_rank').val("");
+	}
+else
+{
+	
+		
+percent_score=parseInt(document.querySelector('input[name="jobknowledge"]:checked').value)+
+parseInt(document.querySelector('input[name="adaptability"]:checked').value)+
+parseInt(document.querySelector('input[name="problemsolve"]:checked').value)+
+parseInt(document.querySelector('input[name="initiativeness"]:checked').value)+
+parseInt(document.querySelector('input[name="planning"]:checked').value)+
+parseInt(document.querySelector('input[name="work"]:checked').value)+
+parseInt(document.querySelector('input[name="skills"]:checked').value)+
+parseInt(document.querySelector('input[name="Communication"]:checked').value)+
+parseInt(document.querySelector('input[name="supervision"]:checked').value)+
+parseInt(document.querySelector('input[name="availability"]:checked').value)+
+parseInt(document.querySelector('input[name="professionalism"]:checked').value);
+	
+
+
+		
+		if (percent_score <50 )
+		{
+			var form = document.getElementById("id_jobknowledge");
+			//alert(document.getElementById($("id_jobknowledge").val()));
+			//alert(document.querySelector('input[name="jobknowledge"]:checked').value);
+			
+			
+		
+			$('#id_rank').css("background-color", "#FF0000");
+			$('#id_rank').val(Math.round(percent_score)+"%: Poor");
+
+			
+			
+		}
+		else if (percent_score >=50 && percent_score<90 )
+		{
+			$('#id_rank').css("background-color", "#FFC300");
+			$('#id_rank').val(Math.round(percent_score)+"%: Average");
+			
+			
+		}
+		else
+		{
+			$('#id_rank').css("background-color", "#00FF82");
+			$('#id_rank').val(Math.round(percent_score)+"%: Good");
+			
+			
+		}
+		
+}
+		
+    }); 
+$('#id_problemsolve').change(function()
+	{
+if(document.querySelector('input[name="jobknowledge"]:checked').value==""||
+document.querySelector('input[name="adaptability"]:checked').value==""||
+document.querySelector('input[name="problemsolve"]:checked').value==""||
+document.querySelector('input[name="initiativeness"]:checked').value==""||
+document.querySelector('input[name="planning"]:checked').value==""||
+document.querySelector('input[name="work"]:checked').value==""||
+document.querySelector('input[name="skills"]:checked').value==""||
+document.querySelector('input[name="Communication"]:checked').value==""||
+document.querySelector('input[name="supervision"]:checked').value==""||
+document.querySelector('input[name="availability"]:checked').value==""||
+document.querySelector('input[name="professionalism"]:checked').value=="")
+	{
+$('#id_rank').css("background-color", "");
+$('#id_rank').val("");
+	}
+else
+{
+	
+		
+percent_score=parseInt(document.querySelector('input[name="jobknowledge"]:checked').value)+
+parseInt(document.querySelector('input[name="adaptability"]:checked').value)+
+parseInt(document.querySelector('input[name="problemsolve"]:checked').value)+
+parseInt(document.querySelector('input[name="initiativeness"]:checked').value)+
+parseInt(document.querySelector('input[name="planning"]:checked').value)+
+parseInt(document.querySelector('input[name="work"]:checked').value)+
+parseInt(document.querySelector('input[name="skills"]:checked').value)+
+parseInt(document.querySelector('input[name="Communication"]:checked').value)+
+parseInt(document.querySelector('input[name="supervision"]:checked').value)+
+parseInt(document.querySelector('input[name="availability"]:checked').value)+
+parseInt(document.querySelector('input[name="professionalism"]:checked').value);
+	
+
+
+		
+		if (percent_score <50 )
+		{
+			var form = document.getElementById("id_jobknowledge");
+			//alert(document.getElementById($("id_jobknowledge").val()));
+			//alert(document.querySelector('input[name="jobknowledge"]:checked').value);
+			
+			
+		
+			$('#id_rank').css("background-color", "#FF0000");
+			$('#id_rank').val(Math.round(percent_score)+"%: Poor");
+
+			
+			
+		}
+		else if (percent_score >=50 && percent_score<90 )
+		{
+			$('#id_rank').css("background-color", "#FFC300");
+			$('#id_rank').val(Math.round(percent_score)+"%: Average");
+			
+			
+		}
+		else
+		{
+			$('#id_rank').css("background-color", "#00FF82");
+			$('#id_rank').val(Math.round(percent_score)+"%: Good");
+			
+			
+		}
+		
+}
+		
+    }); 
+$('#id_initiativeness').change(function()
+	{
+if(document.querySelector('input[name="jobknowledge"]:checked').value==""||
+document.querySelector('input[name="adaptability"]:checked').value==""||
+document.querySelector('input[name="problemsolve"]:checked').value==""||
+document.querySelector('input[name="initiativeness"]:checked').value==""||
+document.querySelector('input[name="planning"]:checked').value==""||
+document.querySelector('input[name="work"]:checked').value==""||
+document.querySelector('input[name="skills"]:checked').value==""||
+document.querySelector('input[name="Communication"]:checked').value==""||
+document.querySelector('input[name="supervision"]:checked').value==""||
+document.querySelector('input[name="availability"]:checked').value==""||
+document.querySelector('input[name="professionalism"]:checked').value=="")
+	{
+$('#id_rank').css("background-color", "");
+$('#id_rank').val("");
+	}
+else
+{
+	
+		
+percent_score=parseInt(document.querySelector('input[name="jobknowledge"]:checked').value)+
+parseInt(document.querySelector('input[name="adaptability"]:checked').value)+
+parseInt(document.querySelector('input[name="problemsolve"]:checked').value)+
+parseInt(document.querySelector('input[name="initiativeness"]:checked').value)+
+parseInt(document.querySelector('input[name="planning"]:checked').value)+
+parseInt(document.querySelector('input[name="work"]:checked').value)+
+parseInt(document.querySelector('input[name="skills"]:checked').value)+
+parseInt(document.querySelector('input[name="Communication"]:checked').value)+
+parseInt(document.querySelector('input[name="supervision"]:checked').value)+
+parseInt(document.querySelector('input[name="availability"]:checked').value)+
+parseInt(document.querySelector('input[name="professionalism"]:checked').value);
+	
+
+
+		
+		if (percent_score <50 )
+		{
+			var form = document.getElementById("id_jobknowledge");
+			//alert(document.getElementById($("id_jobknowledge").val()));
+			//alert(document.querySelector('input[name="jobknowledge"]:checked').value);
+			
+			
+		
+			$('#id_rank').css("background-color", "#FF0000");
+			$('#id_rank').val(Math.round(percent_score)+"%: Poor");
+
+			
+			
+		}
+		else if (percent_score >=50 && percent_score<90 )
+		{
+			$('#id_rank').css("background-color", "#FFC300");
+			$('#id_rank').val(Math.round(percent_score)+"%: Average");
+			
+			
+		}
+		else
+		{
+			$('#id_rank').css("background-color", "#00FF82");
+			$('#id_rank').val(Math.round(percent_score)+"%: Good");
+			
+			
+		}
+		
+}
+		
+    }); 
+$('#id_planning').change(function()
+	{
+if(document.querySelector('input[name="jobknowledge"]:checked').value==""||
+document.querySelector('input[name="adaptability"]:checked').value==""||
+document.querySelector('input[name="problemsolve"]:checked').value==""||
+document.querySelector('input[name="initiativeness"]:checked').value==""||
+document.querySelector('input[name="planning"]:checked').value==""||
+document.querySelector('input[name="work"]:checked').value==""||
+document.querySelector('input[name="skills"]:checked').value==""||
+document.querySelector('input[name="Communication"]:checked').value==""||
+document.querySelector('input[name="supervision"]:checked').value==""||
+document.querySelector('input[name="availability"]:checked').value==""||
+document.querySelector('input[name="professionalism"]:checked').value=="")
+	{
+$('#id_rank').css("background-color", "");
+$('#id_rank').val("");
+	}
+else
+{
+	
+		
+percent_score=parseInt(document.querySelector('input[name="jobknowledge"]:checked').value)+
+parseInt(document.querySelector('input[name="adaptability"]:checked').value)+
+parseInt(document.querySelector('input[name="problemsolve"]:checked').value)+
+parseInt(document.querySelector('input[name="initiativeness"]:checked').value)+
+parseInt(document.querySelector('input[name="planning"]:checked').value)+
+parseInt(document.querySelector('input[name="work"]:checked').value)+
+parseInt(document.querySelector('input[name="skills"]:checked').value)+
+parseInt(document.querySelector('input[name="Communication"]:checked').value)+
+parseInt(document.querySelector('input[name="supervision"]:checked').value)+
+parseInt(document.querySelector('input[name="availability"]:checked').value)+
+parseInt(document.querySelector('input[name="professionalism"]:checked').value);
+	
+
+
+		
+		if (percent_score <50 )
+		{
+			var form = document.getElementById("id_jobknowledge");
+			//alert(document.getElementById($("id_jobknowledge").val()));
+			//alert(document.querySelector('input[name="jobknowledge"]:checked').value);
+			
+			
+		
+			$('#id_rank').css("background-color", "#FF0000");
+			$('#id_rank').val(Math.round(percent_score)+"%: Poor");
+
+			
+			
+		}
+		else if (percent_score >=50 && percent_score<90 )
+		{
+			$('#id_rank').css("background-color", "#FFC300");
+			$('#id_rank').val(Math.round(percent_score)+"%: Average");
+			
+			
+		}
+		else
+		{
+			$('#id_rank').css("background-color", "#00FF82");
+			$('#id_rank').val(Math.round(percent_score)+"%: Good");
+			
+			
+		}
+		
+}
+		
+    }); 
+$('#id_work').change(function()
+	{
+if(document.querySelector('input[name="jobknowledge"]:checked').value==""||
+document.querySelector('input[name="adaptability"]:checked').value==""||
+document.querySelector('input[name="problemsolve"]:checked').value==""||
+document.querySelector('input[name="initiativeness"]:checked').value==""||
+document.querySelector('input[name="planning"]:checked').value==""||
+document.querySelector('input[name="work"]:checked').value==""||
+document.querySelector('input[name="skills"]:checked').value==""||
+document.querySelector('input[name="Communication"]:checked').value==""||
+document.querySelector('input[name="supervision"]:checked').value==""||
+document.querySelector('input[name="availability"]:checked').value==""||
+document.querySelector('input[name="professionalism"]:checked').value=="")
+	{
+$('#id_rank').css("background-color", "");
+$('#id_rank').val("");
+	}
+else
+{
+	
+		
+percent_score=parseInt(document.querySelector('input[name="jobknowledge"]:checked').value)+
+parseInt(document.querySelector('input[name="adaptability"]:checked').value)+
+parseInt(document.querySelector('input[name="problemsolve"]:checked').value)+
+parseInt(document.querySelector('input[name="initiativeness"]:checked').value)+
+parseInt(document.querySelector('input[name="planning"]:checked').value)+
+parseInt(document.querySelector('input[name="work"]:checked').value)+
+parseInt(document.querySelector('input[name="skills"]:checked').value)+
+parseInt(document.querySelector('input[name="Communication"]:checked').value)+
+parseInt(document.querySelector('input[name="supervision"]:checked').value)+
+parseInt(document.querySelector('input[name="availability"]:checked').value)+
+parseInt(document.querySelector('input[name="professionalism"]:checked').value);
+	
+
+
+		
+		if (percent_score <50 )
+		{
+			var form = document.getElementById("id_jobknowledge");
+			//alert(document.getElementById($("id_jobknowledge").val()));
+			//alert(document.querySelector('input[name="jobknowledge"]:checked').value);
+			
+			
+		
+			$('#id_rank').css("background-color", "#FF0000");
+			$('#id_rank').val(Math.round(percent_score)+"%: Poor");
+
+			
+			
+		}
+		else if (percent_score >=50 && percent_score<90 )
+		{
+			$('#id_rank').css("background-color", "#FFC300");
+			$('#id_rank').val(Math.round(percent_score)+"%: Average");
+			
+			
+		}
+		else
+		{
+			$('#id_rank').css("background-color", "#00FF82");
+			$('#id_rank').val(Math.round(percent_score)+"%: Good");
+			
+			
+		}
+		
+}
+		
+    }); 
+$('#id_skills').change(function()
+	{
+if(document.querySelector('input[name="jobknowledge"]:checked').value==""||
+document.querySelector('input[name="adaptability"]:checked').value==""||
+document.querySelector('input[name="problemsolve"]:checked').value==""||
+document.querySelector('input[name="initiativeness"]:checked').value==""||
+document.querySelector('input[name="planning"]:checked').value==""||
+document.querySelector('input[name="work"]:checked').value==""||
+document.querySelector('input[name="skills"]:checked').value==""||
+document.querySelector('input[name="Communication"]:checked').value==""||
+document.querySelector('input[name="supervision"]:checked').value==""||
+document.querySelector('input[name="availability"]:checked').value==""||
+document.querySelector('input[name="professionalism"]:checked').value=="")
+	{
+$('#id_rank').css("background-color", "");
+$('#id_rank').val("");
+	}
+else
+{
+	
+		
+percent_score=parseInt(document.querySelector('input[name="jobknowledge"]:checked').value)+
+parseInt(document.querySelector('input[name="adaptability"]:checked').value)+
+parseInt(document.querySelector('input[name="problemsolve"]:checked').value)+
+parseInt(document.querySelector('input[name="initiativeness"]:checked').value)+
+parseInt(document.querySelector('input[name="planning"]:checked').value)+
+parseInt(document.querySelector('input[name="work"]:checked').value)+
+parseInt(document.querySelector('input[name="skills"]:checked').value)+
+parseInt(document.querySelector('input[name="Communication"]:checked').value)+
+parseInt(document.querySelector('input[name="supervision"]:checked').value)+
+parseInt(document.querySelector('input[name="availability"]:checked').value)+
+parseInt(document.querySelector('input[name="professionalism"]:checked').value);
+	
+
+
+		
+		if (percent_score <50 )
+		{
+			var form = document.getElementById("id_jobknowledge");
+			//alert(document.getElementById($("id_jobknowledge").val()));
+			//alert(document.querySelector('input[name="jobknowledge"]:checked').value);
+			
+			
+		
+			$('#id_rank').css("background-color", "#FF0000");
+			$('#id_rank').val(Math.round(percent_score)+"%: Poor");
+
+			
+			
+		}
+		else if (percent_score >=50 && percent_score<90 )
+		{
+			$('#id_rank').css("background-color", "#FFC300");
+			$('#id_rank').val(Math.round(percent_score)+"%: Average");
+			
+			
+		}
+		else
+		{
+			$('#id_rank').css("background-color", "#00FF82");
+			$('#id_rank').val(Math.round(percent_score)+"%: Good");
+			
+			
+		}
+		
+}
+		
+    }); 
+$('#id_Communication').change(function()
+	{
+if(document.querySelector('input[name="jobknowledge"]:checked').value==""||
+document.querySelector('input[name="adaptability"]:checked').value==""||
+document.querySelector('input[name="problemsolve"]:checked').value==""||
+document.querySelector('input[name="initiativeness"]:checked').value==""||
+document.querySelector('input[name="planning"]:checked').value==""||
+document.querySelector('input[name="work"]:checked').value==""||
+document.querySelector('input[name="skills"]:checked').value==""||
+document.querySelector('input[name="Communication"]:checked').value==""||
+document.querySelector('input[name="supervision"]:checked').value==""||
+document.querySelector('input[name="availability"]:checked').value==""||
+document.querySelector('input[name="professionalism"]:checked').value=="")
+	{
+$('#id_rank').css("background-color", "");
+$('#id_rank').val("");
+	}
+else
+{
+	
+		
+percent_score=parseInt(document.querySelector('input[name="jobknowledge"]:checked').value)+
+parseInt(document.querySelector('input[name="adaptability"]:checked').value)+
+parseInt(document.querySelector('input[name="problemsolve"]:checked').value)+
+parseInt(document.querySelector('input[name="initiativeness"]:checked').value)+
+parseInt(document.querySelector('input[name="planning"]:checked').value)+
+parseInt(document.querySelector('input[name="work"]:checked').value)+
+parseInt(document.querySelector('input[name="skills"]:checked').value)+
+parseInt(document.querySelector('input[name="Communication"]:checked').value)+
+parseInt(document.querySelector('input[name="supervision"]:checked').value)+
+parseInt(document.querySelector('input[name="availability"]:checked').value)+
+parseInt(document.querySelector('input[name="professionalism"]:checked').value);
+	
+
+
+		
+		if (percent_score <50 )
+		{
+			var form = document.getElementById("id_jobknowledge");
+			//alert(document.getElementById($("id_jobknowledge").val()));
+			//alert(document.querySelector('input[name="jobknowledge"]:checked').value);
+			
+			
+		
+			$('#id_rank').css("background-color", "#FF0000");
+			$('#id_rank').val(Math.round(percent_score)+"%: Poor");
+
+			
+			
+		}
+		else if (percent_score >=50 && percent_score<90 )
+		{
+			$('#id_rank').css("background-color", "#FFC300");
+			$('#id_rank').val(Math.round(percent_score)+"%: Average");
+			
+			
+		}
+		else
+		{
+			$('#id_rank').css("background-color", "#00FF82");
+			$('#id_rank').val(Math.round(percent_score)+"%: Good");
+			
+			
+		}
+		
+}
+		
+    }); 
+$('#id_supervision').change(function()
+	{
+if(document.querySelector('input[name="jobknowledge"]:checked').value==""||
+document.querySelector('input[name="adaptability"]:checked').value==""||
+document.querySelector('input[name="problemsolve"]:checked').value==""||
+document.querySelector('input[name="initiativeness"]:checked').value==""||
+document.querySelector('input[name="planning"]:checked').value==""||
+document.querySelector('input[name="work"]:checked').value==""||
+document.querySelector('input[name="skills"]:checked').value==""||
+document.querySelector('input[name="Communication"]:checked').value==""||
+document.querySelector('input[name="supervision"]:checked').value==""||
+document.querySelector('input[name="availability"]:checked').value==""||
+document.querySelector('input[name="professionalism"]:checked').value=="")
+	{
+$('#id_rank').css("background-color", "");
+$('#id_rank').val("");
+	}
+else
+{
+	
+		
+percent_score=parseInt(document.querySelector('input[name="jobknowledge"]:checked').value)+
+parseInt(document.querySelector('input[name="adaptability"]:checked').value)+
+parseInt(document.querySelector('input[name="problemsolve"]:checked').value)+
+parseInt(document.querySelector('input[name="initiativeness"]:checked').value)+
+parseInt(document.querySelector('input[name="planning"]:checked').value)+
+parseInt(document.querySelector('input[name="work"]:checked').value)+
+parseInt(document.querySelector('input[name="skills"]:checked').value)+
+parseInt(document.querySelector('input[name="Communication"]:checked').value)+
+parseInt(document.querySelector('input[name="supervision"]:checked').value)+
+parseInt(document.querySelector('input[name="availability"]:checked').value)+
+parseInt(document.querySelector('input[name="professionalism"]:checked').value);
+	
+
+
+		
+		if (percent_score <50 )
+		{
+			var form = document.getElementById("id_jobknowledge");
+			//alert(document.getElementById($("id_jobknowledge").val()));
+			//alert(document.querySelector('input[name="jobknowledge"]:checked').value);
+			
+			
+		
+			$('#id_rank').css("background-color", "#FF0000");
+			$('#id_rank').val(Math.round(percent_score)+"%: Poor");
+
+			
+			
+		}
+		else if (percent_score >=50 && percent_score<90 )
+		{
+			$('#id_rank').css("background-color", "#FFC300");
+			$('#id_rank').val(Math.round(percent_score)+"%: Average");
+			
+			
+		}
+		else
+		{
+			$('#id_rank').css("background-color", "#00FF82");
+			$('#id_rank').val(Math.round(percent_score)+"%: Good");
+			
+			
+		}
+		
+}
+		
+    }); 
+$('#id_availability').change(function()
+	{
+if(document.querySelector('input[name="jobknowledge"]:checked').value==""||
+document.querySelector('input[name="adaptability"]:checked').value==""||
+document.querySelector('input[name="problemsolve"]:checked').value==""||
+document.querySelector('input[name="initiativeness"]:checked').value==""||
+document.querySelector('input[name="planning"]:checked').value==""||
+document.querySelector('input[name="work"]:checked').value==""||
+document.querySelector('input[name="skills"]:checked').value==""||
+document.querySelector('input[name="Communication"]:checked').value==""||
+document.querySelector('input[name="supervision"]:checked').value==""||
+document.querySelector('input[name="availability"]:checked').value==""||
+document.querySelector('input[name="professionalism"]:checked').value=="")
+	{
+$('#id_rank').css("background-color", "");
+$('#id_rank').val("");
+	}
+else
+{
+	
+		
+percent_score=parseInt(document.querySelector('input[name="jobknowledge"]:checked').value)+
+parseInt(document.querySelector('input[name="adaptability"]:checked').value)+
+parseInt(document.querySelector('input[name="problemsolve"]:checked').value)+
+parseInt(document.querySelector('input[name="initiativeness"]:checked').value)+
+parseInt(document.querySelector('input[name="planning"]:checked').value)+
+parseInt(document.querySelector('input[name="work"]:checked').value)+
+parseInt(document.querySelector('input[name="skills"]:checked').value)+
+parseInt(document.querySelector('input[name="Communication"]:checked').value)+
+parseInt(document.querySelector('input[name="supervision"]:checked').value)+
+parseInt(document.querySelector('input[name="availability"]:checked').value)+
+parseInt(document.querySelector('input[name="professionalism"]:checked').value);
+	
+
+
+		
+		if (percent_score <50 )
+		{
+			var form = document.getElementById("id_jobknowledge");
+			//alert(document.getElementById($("id_jobknowledge").val()));
+			//alert(document.querySelector('input[name="jobknowledge"]:checked').value);
+			
+			
+		
+			$('#id_rank').css("background-color", "#FF0000");
+			$('#id_rank').val(Math.round(percent_score)+"%: Poor");
+
+			
+			
+		}
+		else if (percent_score >=50 && percent_score<90 )
+		{
+			$('#id_rank').css("background-color", "#FFC300");
+			$('#id_rank').val(Math.round(percent_score)+"%: Average");
+			
+			
+		}
+		else
+		{
+			$('#id_rank').css("background-color", "#00FF82");
+			$('#id_rank').val(Math.round(percent_score)+"%: Good");
+			
+			
+		}
+		
+}
+		
+    }); 
+$('#id_professionalism').change(function()
+	{
+if(document.querySelector('input[name="jobknowledge"]:checked').value==""||
+document.querySelector('input[name="adaptability"]:checked').value==""||
+document.querySelector('input[name="problemsolve"]:checked').value==""||
+document.querySelector('input[name="initiativeness"]:checked').value==""||
+document.querySelector('input[name="planning"]:checked').value==""||
+document.querySelector('input[name="work"]:checked').value==""||
+document.querySelector('input[name="skills"]:checked').value==""||
+document.querySelector('input[name="Communication"]:checked').value==""||
+document.querySelector('input[name="supervision"]:checked').value==""||
+document.querySelector('input[name="availability"]:checked').value==""||
+document.querySelector('input[name="professionalism"]:checked').value=="")
+	{
+$('#id_rank').css("background-color", "");
+$('#id_rank').val("");
+	}
+else
+{
+	
+		
+percent_score=parseInt(document.querySelector('input[name="jobknowledge"]:checked').value)+
+parseInt(document.querySelector('input[name="adaptability"]:checked').value)+
+parseInt(document.querySelector('input[name="problemsolve"]:checked').value)+
+parseInt(document.querySelector('input[name="initiativeness"]:checked').value)+
+parseInt(document.querySelector('input[name="planning"]:checked').value)+
+parseInt(document.querySelector('input[name="work"]:checked').value)+
+parseInt(document.querySelector('input[name="skills"]:checked').value)+
+parseInt(document.querySelector('input[name="Communication"]:checked').value)+
+parseInt(document.querySelector('input[name="supervision"]:checked').value)+
+parseInt(document.querySelector('input[name="availability"]:checked').value)+
+parseInt(document.querySelector('input[name="professionalism"]:checked').value);
+	
+
+
+		
+		if (percent_score <50 )
+		{
+			var form = document.getElementById("id_jobknowledge");
+			//alert(document.getElementById($("id_jobknowledge").val()));
+			//alert(document.querySelector('input[name="jobknowledge"]:checked').value);
+			
+			
+		
+			$('#id_rank').css("background-color", "#FF0000");
+			$('#id_rank').val(Math.round(percent_score)+"%: Poor");
+
+			
+			
+		}
+		else if (percent_score >=50 && percent_score<90 )
+		{
+			$('#id_rank').css("background-color", "#FFC300");
+			$('#id_rank').val(Math.round(percent_score)+"%: Average");
+			
+			
+		}
+		else
+		{
+			$('#id_rank').css("background-color", "#00FF82");
+			$('#id_rank').val(Math.round(percent_score)+"%: Good");
+			
+			
+		}
+		
+}
+		
+    }); 	
+});
+
+
+
+//PROVIDER ASSESSMENT
+$("#id_Provider").change(function() {
+			if ($("#id_Provider option:selected").text()=="External provider") {
+					
+				$('#id_organisation').show();
+				
+				$('#id_organisation').attr('required','');
+				$('#id_organisation').attr('data-error', 'This field is required.');
+				$('label[for="id_organisation"]').show();
+					
+				
+			} else {
+				
+				$('#id_organisation').hide();
+				
+				$('label[for="id_organisation"]').hide();
+				$('#id_organisation').removeAttr('required');
+				$('#id_organisation').removeAttr('data-error');				
+			}
+		});
+		$("#id_rootcause").trigger("change");
+
 //INCIDENT PLANNER DROPDOWNS
 
 $("#id_rootcause").change(function() {

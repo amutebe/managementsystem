@@ -201,6 +201,8 @@ class mod9001_qmsplanner(models.Model):
     scheduled=models.DateField("Rescheduled Date:",null=True,blank=True)
     entered_by = models.ForeignKey(settings.AUTH_USER_MODEL,null=True, blank=True, related_name='qms_entered_by',on_delete=models.SET_NULL)
     date_today=models.DateField("Date created:",default=datetime.now)
+    def __str__(self):
+        return self.planner_number
 
 
 class mod9001_trainingregister(models.Model):
@@ -234,6 +236,7 @@ class mod9001_trainingplanner(models.Model):
     TYPE=(('1','Planned'),('2','Not Planned'))
     type=models.CharField(max_length=200, choices=TYPE)
     description = models.ForeignKey('train_desc',null=True, blank=True, related_name='train_desc',on_delete=models.SET_NULL)
+    details=models.TextField("Additional description:",null=True,blank=True)
     other=models.TextField("Other training description:",null=True,blank=True)
     TrainAudience=(('1','Employee'),('2','Other'))
     trainaudience=models.CharField(max_length=200,null=True, choices=TrainAudience)
@@ -280,6 +283,21 @@ class mod9001_customeregistration(models.Model):
     date_today=models.DateField("Date created:",default=datetime.now)
 
 
+class mod9001_supplieregistration(models.Model):
+    name="Supplier Registration"
+    supplier_number=models.CharField("Supplier no.:",max_length=200,primary_key=True)
+    date_posted=models.DateField("Date Posted:",null=True)
+    name=models.TextField("Supplier Name:",null=True,blank=True)
+    manager=models.TextField("Account Manager:",null=True,blank=True)
+    contact=models.TextField("Customer Contact Person:",null=True,blank=True)
+    phone=models.TextField("Customer Business Phone No:",null=True,blank=True)
+    email=models.EmailField("Customer Business Email: ",null=True,blank=True)
+    address=models.TextField("Customer Business Address: ",null=True,blank=True)
+    entered_by = models.ForeignKey(settings.AUTH_USER_MODEL,null=True, blank=True, related_name='supplier_entered_by',on_delete=models.SET_NULL)
+    date_today=models.DateField("Date created:",default=datetime.now)
+
+
+
 
 class mod9001_incidentregister(models.Model):
     incident_number=models.CharField("Incident No.:",max_length=200,primary_key=True)
@@ -315,7 +333,7 @@ class mod9001_incidentregisterStaff(models.Model):
     
     costdescription=models.TextField("Incident Cost Description:",null=True, blank=True)
     lesson=models.TextField("Lesson learnt:",null=True, blank=True)
-    status=models.TextField("Complaint Status:",null=True, blank=True)
+    status=models.TextField("Compliant Status:",null=True, blank=True)
     entered_by = models.ForeignKey(settings.AUTH_USER_MODEL,null=True, blank=True, related_name='incidentstaff',on_delete=models.SET_NULL)
     date_today=models.DateField("Date created:",default=datetime.now)
 
@@ -328,6 +346,54 @@ class mod9001_processtable(models.Model):
     process=models.ForeignKey('process', on_delete=models.SET_NULL,verbose_name='procestable:',null=True,blank=True)
     purpose=models.TextField("Purpose",null=True, blank=True)
     owner= models.ForeignKey('accounts.employees',on_delete=models.CASCADE,verbose_name='Owner:',related_name='own')
+
+class providerparameters(models.Model):
+    id=models.CharField("ID:",max_length=50,primary_key=True)
+    desc=models.TextField("Description:")
+    def __str__(self):
+        return self.desc
+
+class adaptability(models.Model):
+    id=models.CharField("ID:",max_length=50,primary_key=True)
+    desc=models.TextField("Description:")
+    def __str__(self):
+        return self.riskseverity_desc
+
+
+class mod9001_providerassessment(models.Model):
+    emp_perfrev_no=models.CharField("Performance Review No.:",max_length=200,default="Comp-EA-Q-"+car_no(),primary_key=True)
+    planner_number=models.ForeignKey(mod9001_qmsplanner, on_delete=models.SET_NULL,verbose_name='QMS planner number:',null=True,blank=True)
+   
+    date=models.DateTimeField("Date:",null=True)
+    provider=(('1','External provider'),('2','Internal provider'))
+    Provider=models.CharField("Provider Type",max_length=200, choices=provider)
+    organisation=models.ForeignKey('mod9001_supplieregistration', on_delete=models.SET_NULL,verbose_name='External Provider Organisation:',null=True,blank=True)
+    assesment_date=models.DateTimeField("Last Assessment Date:",null=True)
+    start=models.DateField("Start Date:")
+    end=models.DateField("End Date:")
+    appraise= models.ForeignKey('accounts.employees',on_delete=models.CASCADE,verbose_name='Appraise:',related_name='appraise')
+
+    
+    purpose=models.TextField("Purpose",null=True, blank=True)
+  # owner= models.ForeignKey('accounts.employees',on_delete=models.CASCADE,verbose_name='Owner:',related_name='own')
+    jobknowledge=models.ForeignKey(providerparameters, on_delete=models.CASCADE,verbose_name='1. Job Knowledge Score:',related_name='jobknowledg',null=True,blank=True)
+    adaptability=models.ForeignKey(providerparameters, on_delete=models.CASCADE,verbose_name='2.	Adaptability & Flexibility Score:',related_name='adaptabilit',null=True,blank=True)
+    problemsolve=models.ForeignKey(providerparameters, on_delete=models.CASCADE,verbose_name='3.	Problem Solving Score:',related_name='problemsolve',null=True,blank=True)
+    initiativeness=models.ForeignKey(providerparameters, on_delete=models.CASCADE,verbose_name='4.	Initiativeness & Resourcefulness Score:',related_name='initiative',null=True,blank=True)
+    planning=models.ForeignKey(providerparameters, on_delete=models.CASCADE,verbose_name='5. Planning & Organisation Score:',related_name='plannin',null=True,blank=True)
+    work=models.ForeignKey(providerparameters, on_delete=models.CASCADE,verbose_name='6.	Work Quality & Quantity Score:',related_name='problemsolv',null=True,blank=True)
+    
+    skills=models.ForeignKey(providerparameters, on_delete=models.CASCADE,verbose_name='7.	Interpersonal Skills Score:',related_name='skill',null=True,blank=True)
+    Communication=models.ForeignKey(providerparameters, on_delete=models.CASCADE,verbose_name='8. Communication Skills Score:',related_name='communicatin',null=True,blank=True)
+    supervision=models.ForeignKey(providerparameters, on_delete=models.CASCADE,verbose_name='9. Supervision & Management Score:',related_name='supervisio',null=True,blank=True)
+    availability=models.ForeignKey(providerparameters, on_delete=models.CASCADE,verbose_name='10.	Availability Score:',related_name='availabilit',null=True,blank=True)
+    professionalism=models.ForeignKey(providerparameters, on_delete=models.CASCADE,verbose_name='11. Professional Contribution Score:',related_name='professionalis',null=True,blank=True)
+    rank=models.CharField("Final Ranking: (Scores 1 to 11 are required)",max_length=6,null=True,blank=True)
+    comment=models.TextField("Comment",null=True, blank=True)
+    entered_by = models.ForeignKey(settings.AUTH_USER_MODEL,null=True, blank=True, related_name='providerentered',on_delete=models.SET_NULL)
+    date_today=models.DateField("Date created:",default=datetime.now)
+    
+  
 
 
 
