@@ -161,7 +161,10 @@ def qms_planner(request):
 
                 
             form.save()
-            return redirect('/')
+            form=qmsplanner(initial={'planner_number': QMS_no()})
+            context={'form':form}
+            return render(request,'qmsplanner.html',context)
+            #return redirect('/')
             
             
           
@@ -332,7 +335,10 @@ def training_planner(request):
 
                 
             form.save()
-            return redirect('/')
+            form=trainingplaner(initial={'plan_number': plan_no()})
+            context={'form':form}
+            return render(request,'trainingplanner.html',context)
+            #return redirect('/')
             
             
           

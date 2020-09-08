@@ -2,13 +2,14 @@
 {% extends "accounts/base.html" %} 
 {% block content %}
 <style>
-form {
+form 
+{
   max-width: 900px;
   display: block;
   margin: 0 auto;
 }
 </style>
-<div class="col-md-8 order-md-1">
+<div class="col-md-10 order-md-1">
           <h4 class="mb-3">Risk Assessment</h4>
 <p class="round2"> 
 
@@ -55,18 +56,18 @@ form {
  <font color="red">{{form.errors.contextdetails}}</font>
 </div>    
     
-<div class="row">
+
 <div class="col"><br>
-      <label for="usr">ID: </label>
+      <label for="usr">ID:</label>
      {{form.issue_number}}
  <font color="red">{{ form.errors.issue_number }}</font>
       
 </div>
   
     
-</div>
-<div class="col"><br>
 
+<div class="col"><br>
+ 
 <div class="form-group" id="contextdescription">
 <input type="text" id="contextdescription" name="contextdescription" value="" >
 </div>
@@ -84,7 +85,7 @@ form {
 
 <div class="form-group" id="internal">
     
-    <label for="internal">If other, please describe:</label>
+    <label for="internal">Please describe:</label>
 <br>
     <input type="text" class="form-control" id="description"  name="description" {{form.description}}
 
@@ -114,14 +115,14 @@ form {
 
 <div class="col">
 <div class="form-group">
-<label for="severity"> Risk Rating:</label><br>
+<label for="severity"> Risk Rating:</label>
 {{form.riskrating}}
 
 </div>
 </div>
  <div class="col">
  <div class="form-group">
-<label  for="severity"><h6> Risk Rank:</h6></label><br>
+<label  for="severity"> Risk Rank:</label>
 {{form.riskrank}}
 
 </div>
@@ -203,8 +204,9 @@ form {
 					<table class="form-group">
 					<tr> 
 
-<td><input class="btn btn-danger" type="submit" name="Submit"></td>
-<td align="right"><a class="btn  btn-warning" href="{% url 'home'%}"> Cancel </a></td>
+
+<td><a class="btn  btn-warning" href="{% url 'home'%}"> Cancel </a></td>
+<td align="right"><input class="btn btn-danger" type="submit" name="Submit"></td>
 					</tr>
           </table>
 </div>

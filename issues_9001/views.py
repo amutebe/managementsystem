@@ -119,7 +119,10 @@ def issues(request):
         if form.is_valid():
             
             form.save()
-            return redirect('/')
+            form=IssuesForm(initial={'issue_number': Issue_no()})
+            context={'form':form}
+            return render(request,'issues.html',context)
+            #return redirect('/')
             
             
         form=IssuesForm(request.POST)
@@ -174,7 +177,7 @@ def edit_issue(request,pk_test):
 def issues_pending(request):
     pendingcar=mod9001_issues.objects.filter(status='5') #get all issues pending approval    
     context={'pendingcar':pendingcar} 
-    return render(request,'approval_pending.html',context)
+    return render(request,'issues_pending.html',context)
 
 
 
@@ -223,7 +226,10 @@ def interested_parties(request):
         if form.is_valid():
             
             form.save()
-            return redirect('/')
+            #return redirect('/')
+            form=interestedPartiesFORM(initial={'ip_number': IP_no()})
+            context={'form':form}
+            return render(request,'interestedparties.html',context)
             
             
         form=interestedPartiesFORM(request.POST)
@@ -333,7 +339,10 @@ def regulatory_requirement(request):
         if form.is_valid():
             
             form.save()
-            return redirect('/')
+            form=regulatoryRequirmentFORM(initial={'regulatory_number': Regulatory_no()})
+            context={'form':form}
+            return render(request,'regulatoryrequirement.html',context)
+            #return redirect('/')
             
             
         form=regulatoryRequirmentFORM(request.POST)
@@ -459,8 +468,11 @@ def risks(request):
            
             
             form.save()
+            form=risk(initial={'risk_number': Risk_no()})
+            context={'form':form}
+            return render(request,'risks.html',context)
            
-            return redirect('/')
+            #return redirect('/')
             
             
         form=risk(request.POST)
@@ -506,7 +518,10 @@ def opportunity(request):
         if form.is_valid():
             
             form.save()
-            return redirect('/')
+            #return redirect('/')
+            form=risk(initial={'risk_number': opportunity_no()})
+            context={'form':form}
+            return render(request,'opportunity.html',context)
             
             
         form=risk(request.POST)
@@ -526,7 +541,7 @@ def risk_pending(request):
 
 @login_required(login_url='login')
 def opp_pending(request):
-    pendingcar=mod9001_risks.objects.filter(status='5',record_type='OPP') #get all risk pending approval    
+    pendingcar=mod9001_risks.objects.filter(status='5',record_type='OPP') #get all opportunity  pending approval    
     context={'pendingcar':pendingcar} 
     return render(request,'opp_pending.html',context)
 

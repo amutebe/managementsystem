@@ -9,15 +9,16 @@
 
 <form action="" method="POST">
  {% csrf_token %}
-<div class="col-md-8">
+<div class="col-md-10">
 		
 		<div class="card card-body">
 		
 			<table class="table table-sm">
+				<tr class="table-info">
 				<tr>
 					
 					<th>Status:</th>
-					<th>Description:</th>
+					<th>Comment:</th>
                     
 					
 					
@@ -27,7 +28,8 @@
 				
 					<tr>
 					<td>{{form.status}}</td>
-					<td>{{form.rejected}}</td>
+									<td><input type="text" class="form-control" id="rejected"  name="rejected" {{form.rejected}}</td>
+          
                  
 					</tr>
 

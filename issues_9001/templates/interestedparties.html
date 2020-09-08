@@ -35,6 +35,7 @@ div3
         
         
         <div class="col-md-8 order-md-1">
+      
           <h4 class="mb-3">Interested Party</h4>
 <p class="round2"> 
 <form action="/interested_parties/" method="post">
@@ -82,7 +83,7 @@ div3
 </div>
 
 
-
+<br>
 <div class="form-group" id="internaldiv">
     
     <label for="internal">Internal IP:</label>
@@ -99,6 +100,7 @@ div3
   <font color="red">{{form.errors.external_issues}}</font>
 
 </div>
+
 <div class="form-group" id="qualitydiv">
     <label for="external"> Requirements:</label>
 	<br>
@@ -175,9 +177,10 @@ div3
 <div class="card card-body">
 					<table class="form-group">
 												<tr>
-						<td><input class="btn btn-danger" type="submit" name="Submit"></td>
-					  <td align="right"><a class="btn  btn-warning" href="{% url 'home'%}"> Cancel </a></td>
-						</tr>
+					
+					  <td ><a class="btn  btn-warning" href="{% url 'home'%}"> Cancel </a></td>
+							<td align="right"><input class="btn btn-danger" type="submit" name="Submit"></td>
+            </tr>
                     </table>
 				
 </div>

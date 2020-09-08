@@ -7,7 +7,7 @@
 
 
 
-<form action="" method="POST">
+<form action="approve_ip" method="POST">
  {% csrf_token %}
 <div class="col-md-12">
 		
@@ -18,9 +18,9 @@
 					
 				
           <th>Status:</th>
-					<th>Description:</th>
-                    
-                    
+					<th>Comment:</th>
+                 
+                  
 					
 					
 				</tr>
@@ -30,7 +30,7 @@
 					<tr>
 	<!--			<td><input type="date" class="form-control-plaintext" readonly {{form.analysis_date}}</td>-->	
           <td>{{form.status}}</td>
-					<td>{{form.rejected}}</td>
+					<td><input type="text" class="form-control" id="rejected"  name="rejected" {{form.rejected}}</td>
                     
                     
 					</tr>
@@ -38,15 +38,15 @@
                     <tr>
                     <td>
                    <div class="text-left">
-                    <input class="btn btn-danger" type="submit" name="Confirm">
+                  <a class="btn btn-warning " href="{%url 'ip_pending' %}">Cancel</a>
                     </div>
                     </td>
                      <td>
                   
                     
                     <div class="text-right" >
+                      <input class="btn btn-danger" type="submit" name="Confirm">
                     
-                    <a class="btn btn-warning " href="{%url 'ip_pending' %}">Cancel</a>
                     </div>
                   
                     </td>

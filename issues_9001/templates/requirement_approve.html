@@ -17,7 +17,7 @@
 				<tr class="table-info">
 					
 					<th>Status:</th>
-					<th>Description:</th>
+					<th>Comment:</th>
                    
 					
 					
@@ -27,21 +27,23 @@
 				
 					<tr>
 					<td>{{form.status}}</td>
-					<td>{{form.rejected}}</td>
+							<td><input type="text" class="form-control" id="rejected"  name="rejected" {{form.rejected}}</td>
+ 
                    
 					</tr>
 
           <tr>
               <td>
                   <div class="text-left">
-                   <input class="btn btn-danger" type="submit" name="Confirm">
+                     <a class="btn btn-warning " href="{%url 'requirement_pending' %}">Cancel</a>
                   </div>
                   </td>
 
 
                     <td>
                     <div class="text-right">
-                    <a class="btn btn-warning " href="{%url 'requirement_pending' %}">Cancel</a>
+                  
+					<input class="btn btn-danger" type="submit" name="Confirm">
                     </div>
                   
                     </td>

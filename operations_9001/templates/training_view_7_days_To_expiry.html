@@ -3,8 +3,7 @@
 {% block content %}
 
 		<br>
-
-		<div class="row">
+<div class="row">
 			<div class="col-md">
 				
 				
@@ -12,22 +11,30 @@
 					<table class="table-bordered">
 						<tr>
 							
-							<th>Plan Number</th>
-							<th>Date</th>
-							<th>Type</th>
-							<th>Start Date</th>
-                            <th></th>
+						<th>ID</th>
+					<th>Created on</th>
+					<th>Type</th>
+					<th>Status</th>
+					<th>Start</th>
+					<th>End</th>
+					<th>Description</th>
+					<th>Details</th>
+					<th>Location</th>
+                            
 						
 						</tr>
 						{% for i in products %}
 						<tr>
 						<td>{{i.plan_number}}</td>
-						<td>{{i.trainng_date}}</td>
-						<td>{{i.type}}</td>
-						<td>{{i.start}}</td>
-                        <td><a class="btn btn-sm btn-warning" href="{% url 'training_due'%}"> Exit </a></td>
-
-										
+					<td>{{i.trainng_date}}</td>
+					<td>{{i.planner}}</td>
+					<td>{{i.status}}</td>
+					<td>{{i.start}}</td>
+					<td>{{i.end}}</td>
+					<td>{{i.description}}</td>
+					<td>{{i.details}}</td>
+					<td>{{i.location}}</td>
+                       				
                         
 						
 						</tr>
@@ -40,7 +47,9 @@
 					</table>
 				
 			</div>
-		
+			<div class="text-right">
+                    <a href="{%url 'training_due' %}"><h6><< Back</h6></a>
+                    </div>
 			
 		</div>
 		

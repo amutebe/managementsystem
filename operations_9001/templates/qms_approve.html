@@ -9,15 +9,15 @@
 
 <form action="" method="POST">
  {% csrf_token %}
-<div class="col-md-8">
+<div class="col-md-10">
 		
 		<div class="card card-body">
 		
 			<table class="table table-sm">
-				<tr>
+				<tr class="table-info">
 					
 					<th>Status:</th>
-					<th>Description:</th>
+					<th>Comment:</th>
                     
 					
 					
@@ -27,8 +27,8 @@
 				
 					<tr>
 					<td>{{form.status}}</td>
-					<td>{{form.rejected}}</td>
-                 
+								<td><input type="text" class="form-control" id="rejected"  name="rejected" {{form.rejected}}</td>
+          
 					</tr>
 
                     <tr>
@@ -37,14 +37,7 @@
                     <a class="btn btn-warning " href="{%url 'qms_pending' %}">Cancel</a>
                     </div>
                     </td>
-                     <td>
-                   <div class="text-left">
-                   </div>
-                    </td>
-                     <td>
-                   <div class="text-left">
-                   </div>
-                    </td>
+                     
                     <td>
                     <div class="text-right">
                     <input class="btn btn-danger" type="submit" name="Confirm">

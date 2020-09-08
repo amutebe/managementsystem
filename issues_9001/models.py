@@ -72,6 +72,9 @@ class mod9001_issues(models.Model):
     internal_issues=models.CharField(max_length=200,null=True,blank=True, choices=INTERNAL_ISSUES)
     EXTERNAL_ISSUES=(('1','Legal and Regulatory requirements'),('2','Economic enviroment'),('3','Cultural enviroment'),('4','Political enviroment'),('5','Competitive enviroment'),('6','Social enviroment'),('7','Threats'),('8','Opportunities'),('9','Other'))
     external_issues=models.CharField(max_length=200,null=True,blank=True, choices=EXTERNAL_ISSUES)
+    process_desc=(('1','HR'),('2','Operations'))
+    process_desc=models.CharField("Process Description",max_length=200,null=True,blank=True, choices=process_desc)
+    
     PROCESS_ISSUES=(('1','Strength'),('2','Weaknesses'),('3','Opportunities'),('4','Threats'))
     process_issues=models.CharField(max_length=200,null=True,blank=True, choices=PROCESS_ISSUES)
     process_StrengthWeakness=models.ForeignKey(process_StrengthWeakness, on_delete=models.CASCADE,verbose_name='process Strength/Weakness:',related_name='process_StrengthWeakness',null=True,blank=True)
@@ -79,7 +82,7 @@ class mod9001_issues(models.Model):
     otherIssue=models.TextField("Other Issue:",null=True,blank=True, help_text='Please specify other')
 
     
-    description=models.TextField("Description:",null=True,blank=True, help_text='Please give description if any')
+    description=models.TextField("Description:",null=True,blank=True, help_text='Please give comments if any')
 
     mitigation=models.TextField("Mitigation Action:",null=True,blank=True, help_text='Please give description if any')
     responsibility= models.ForeignKey(User,on_delete=models.CASCADE,verbose_name='Responsibility:',related_name='responsibility',null=True,blank=True)

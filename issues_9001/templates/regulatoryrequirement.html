@@ -8,7 +8,7 @@ form {
   margin: 0 auto;
 }
 </style>
-<div class="col-md-8 order-md-1">
+<div class="col-md-10 order-md-1">
           <h4 class="mb-3">Compliance Requirement</h4>
 <p class="round2"> 
 <form action="/regulatory_requirement/" method="post">
@@ -57,7 +57,7 @@ form {
     <font color="red">{{form.errors.otherCategory}}</font>
 </div> 
 
-
+<br>
 <div class="form-group" id="description">
     <label for="Description">Description</label>
     <input type="text" class="form-control" id="description"  name="description" {{form.description}}
@@ -116,8 +116,9 @@ form {
 <div class="card card-body">
 					<table class="form-group">
 					<tr> 
-              <td><input class="btn btn-info" type="submit" name="Submit"></td>
-              <td align="right"><a class="btn  btn-warning" href="{% url 'home'%}"> Cancel </a></td>
+              
+              <td ><a class="btn  btn-warning" href="{% url 'home'%}"> Cancel </a></td>
+              <td align="right"><input class="btn btn-info" type="submit" name="Submit"></td>
 					</tr>
           </table>
 </div>

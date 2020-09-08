@@ -2,18 +2,23 @@
 
 {% block content %}
 <br>
-<div class="col-md-7">
+<div class="col-md-16">
 		
 		<div class="card card-body">
 			
 			<table class="table table-sm">
-				<tr>
+				<tr class="table-info">
 					<th>ID</th>
 					<th>Created on</th>
+					<th>Planner</th>
 					<th>Status</th>
+					<th>Start</th>
+					<th>End</th>
+					<th>Description</th>
+					<th>Details</th>
+					<th></th>
 					
-					<th></th>
-					<th></th>
+					
 				</tr>
 				
 				{% for i in pendingcar %}
@@ -21,9 +26,14 @@
 					<tr>
 					<td>{{i.planner_number}}</td>
 					<td>{{i.plan_date}}</td>
-					
+					<td>{{i.planner}}</td>
 					<td>{{i.status}}</td>
-					<td><a class="btn btn-sm btn-info" href="{%url 'approve_qms' i.planner_number %}">Approve</a></td>
+					<td>{{i.start}}</td>
+					<td>{{i.end}}</td>
+					<td>{{i.description}}</td>
+					<td>{{i.details}}</td>
+
+					<td><a class="btn btn-sm btn-info" href="{%url 'approve_qms' i.planner_number %}">Action</a></td>
 
 					</tr>
 
